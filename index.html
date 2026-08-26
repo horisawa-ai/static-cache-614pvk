@@ -41,15 +41,15 @@ header{position:sticky;top:0;z-index:40;background:rgba(8,8,10,.86);backdrop-fil
 .logo{height:44px;width:auto;display:block;border-radius:8px}
 .bar-spacer{flex:1}
 
-.picker{position:relative}
+.picker{position:relative;z-index:80}
 .picker-btn{display:flex;align-items:center;gap:11px;cursor:pointer;background:var(--surface2);border:1px solid var(--line);color:var(--ink);padding:7px 13px;border-radius:var(--r-sm);font:600 14px/1.2 var(--body);transition:border-color .16s,background .16s}
 .picker-btn:hover{border-color:#3A3A46;background:var(--surface3)}
 .picker-btn .cap{font:500 10px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:4px}
 .chev{width:10px;height:10px;border-right:2px solid var(--ink2);border-bottom:2px solid var(--ink2);transform:rotate(45deg) translate(-2px,-2px);flex:none}
-.menu{position:absolute;right:0;top:calc(100% + 8px);min-width:290px;background:var(--surface2);border:1px solid var(--line);border-radius:var(--r);padding:6px;box-shadow:0 18px 50px rgba(0,0,0,.6);display:none}
+.menu{position:absolute;z-index:80;right:0;top:calc(100% + 8px);min-width:290px;background:#16161C;border:1px solid #33333E;border-radius:var(--r);padding:6px;box-shadow:0 22px 60px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.5);display:none}
 .menu.open{display:block}
 .menu button{display:flex;width:100%;align-items:center;gap:10px;text-align:left;cursor:pointer;background:none;border:0;color:var(--ink);font:500 14px/1.3 var(--body);padding:10px 11px;border-radius:8px}
-.menu button:hover{background:var(--surface3)}
+.menu button:hover{background:#262630}
 .menu button[aria-current="true"]{color:var(--gold)}
 .menu .dot{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none}
 .menu button[aria-current="true"] .dot{background:var(--gold)}
@@ -137,6 +137,30 @@ section.blk{padding:34px 0 0}
 .pick .linhas div{display:flex;flex-direction:column;gap:3px}
 .pick .linhas .k{font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
 .pick .linhas .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:14.5px}
+.pick .linhas .v.vip{color:var(--gold)}
+.pick-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.pick .share{font-family:var(--display);font-weight:800;font-size:19px;color:var(--gold)}
+.sharebar{display:block;height:5px;border-radius:3px;background:var(--surface3);overflow:hidden}
+.sharebar span{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+td.vip{color:var(--gold)}
+
+.vip-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+          padding-bottom:17px;margin-bottom:17px;border-bottom:1px solid var(--line-soft)}
+.vip-k{font:600 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.vip-v{font-family:var(--display);font-weight:800;font-size:31px;color:var(--gold);margin-top:10px;line-height:1}
+.vip-s{color:var(--ink3);font-size:12.5px;margin-top:6px}
+.vip-list{display:flex;flex-direction:column;gap:14px}
+.vip-row{display:grid;grid-template-columns:132px 1fr 62px 128px;gap:14px;align-items:center}
+.vip-nome{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vip-bar{height:22px;background:var(--surface2);border-radius:5px;overflow:hidden}
+.vip-bar span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--gold-deep),var(--gold));transition:width .5s cubic-bezier(.22,1,.36,1)}
+.vip-pct{font-size:13.5px;color:var(--ink2);text-align:right}
+.vip-val{font-size:14px;font-weight:600;color:var(--gold);text-align:right}
+@media (max-width:640px){
+  .vip-row{grid-template-columns:1fr 62px 110px;gap:10px}
+  .vip-nome{grid-column:1 / -1}
+  .vip-v{font-size:26px}
+}
 
 /* cartões de métrica (padrão da plataforma) */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
@@ -160,6 +184,11 @@ section.blk{padding:34px 0 0}
 .m.small.warn .v{color:var(--warn)}
 .m.small.bad .v{color:var(--bad)}
 .m.small.good .v{color:#63C494}
+.m.small.destaque{background:linear-gradient(150deg,var(--gold-dim),var(--surface) 66%);border-color:rgba(242,182,69,.34)}
+.m.small.destaque .v{color:var(--gold);font-size:22px}
+.bolo{padding:19px}
+.bolo .vip-head{padding-bottom:15px;margin-bottom:15px}
+.bolo .vip-row{grid-template-columns:96px 1fr 54px 108px;gap:11px}
 
 /* ---------- tabelas ---------- */
 .tools{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
@@ -317,8 +346,8 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
 
 <main class="wrap">
   <div class="notice" id="notice">
-    <b>Dados de exemplo.</b>
-    <span>Os lançamentos são fictícios, só pra você ver o painel funcionando. Me manda o PDF/XLSX que eu troco por tudo que é real.</span>
+    <b id="noticeTag">Atenção.</b>
+    <span id="noticeTxt"></span>
   </div>
 
   <!-- ======================= VISÃO GERAL ======================= -->
@@ -329,35 +358,33 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
         <h1 id="gTitle">—</h1>
         <p class="sub" id="gSub"></p>
         <div class="hero-meta">
-          <div><span class="k">Valor da cota</span><span class="v num" id="gCota">—</span></div>
+          <div id="gPeriodoWrap"><span class="k">Período</span><span class="v num" id="gPeriodo">—</span></div>
+          <div><span class="k" id="gFaltaK">Faltam</span><span class="v num" id="gFalta">—</span></div>
           <div><span class="k">Sorteio</span><span class="v" id="gData">—</span></div>
-          <div><span class="k">Faltam</span><span class="v num" id="gFalta">—</span></div>
           <div><span class="k">Situação</span><span class="v" id="gStatus">—</span></div>
+          <div id="gCotaWrap"><span class="k">Valor da cota</span><span class="v num" id="gCota">—</span></div>
         </div>
       </div>
-      <div class="ring" id="ring" style="--p:0deg">
-        <div class="track"></div>
-        <div class="mid"><span class="pct num" id="ringPct">0%</span><span class="lbl" id="ringLbl">—</span></div>
-      </div>
+      <div id="gFigura"></div>
     </div>
 
     <section class="blk">
-      <div class="head"><h2>Dinheiro</h2><span class="note">tudo calculado sobre cotas já pagas</span></div>
-      <div class="kpis">
-        <div class="kpi"><div class="k">Arrecadado</div><div class="v num" id="kArrec">—</div><div class="s" id="kArrecS"></div></div>
-        <div class="kpi"><div class="k">A receber</div><div class="v num" id="kReceber">—</div><div class="s" id="kReceberS"></div></div>
-        <div class="kpi"><div class="k">Despesas</div><div class="v num" id="kDesp">—</div><div class="s" id="kDespS"></div></div>
-        <div class="kpi"><div class="k">Comissões</div><div class="v num" id="kCom">—</div><div class="s" id="kComS"></div></div>
-        <div class="kpi accent"><div class="k">Lucro líquido</div><div class="v num" id="kLucro">—</div><div class="s" id="kLucroS"></div></div>
-      </div>
+      <div class="head"><h2>Números da rifa</h2><span class="note" id="gNota">—</span></div>
+      <div class="mgrid" id="gMetricas"></div>
+      <div class="mgrid sub" id="gMetricasSub"></div>
     </section>
 
-    <section class="blk">
+    <section class="blk" id="gOrigemSec">
+      <div class="head"><h2>Origem do faturamento</h2><span class="note">quanto entrou por cada canal</span></div>
+      <div class="card"><div class="bars" id="gOrigem"></div></div>
+    </section>
+
+    <section class="blk" id="gDestaquesSec">
       <div class="head"><h2>Destaques</h2><span class="note">premiação por volume de cotas</span></div>
       <div class="grid2" id="destaques"></div>
     </section>
 
-    <section class="blk">
+    <section class="blk" id="gUltimosSec">
       <div class="head"><h2>Últimos lançamentos</h2><span class="note">as cinco entradas mais recentes</span></div>
       <div class="scroll">
         <table id="tUlt">
@@ -374,7 +401,7 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
       <div>
         <div class="eyebrow">Estatísticas</div>
         <h1>Como essa rifa está andando</h1>
-        <p class="sub">Ritmo de vendas, tamanho médio de compra, mix de pagamento e a projeção de quando as cotas acabam no passo atual.</p>
+        <p class="sub" id="sSub">Ticket médio, peso de cada canal de venda e o comportamento das compras.</p>
       </div>
       <div class="figure">
         <div class="k">Ticket médio</div>
@@ -384,16 +411,28 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
     </div>
 
     <section class="blk">
-      <div class="kpis">
-        <div class="kpi"><div class="k">Compradores</div><div class="v num" id="sComp">—</div><div class="s" id="sCompS"></div></div>
-        <div class="kpi"><div class="k">Cotas por compra</div><div class="v num" id="sMedia">—</div><div class="s" id="sMediaS"></div></div>
-        <div class="kpi"><div class="k">Ritmo</div><div class="v num" id="sRitmo">—</div><div class="s" id="sRitmoS"></div></div>
-        <div class="kpi"><div class="k">Projeção de 100%</div><div class="v" id="sProj">—</div><div class="s" id="sProjS"></div></div>
-        <div class="kpi"><div class="k">Inadimplência</div><div class="v num" id="sInad">—</div><div class="s" id="sInadS"></div></div>
-      </div>
+      <div class="kpis" id="sKpis"></div>
     </section>
 
     <section class="blk">
+      <div class="head"><h2>Faturamento por canal</h2><span class="note">quanto cada origem trouxe</span></div>
+      <div class="card"><div class="bars" id="sBarsFat"></div></div>
+    </section>
+
+    <section class="blk">
+      <div class="grid2">
+        <div>
+          <div class="head"><h2>Pedidos por canal</h2></div>
+          <div class="card"><div class="bars" id="sBarsPed"></div></div>
+        </div>
+        <div>
+          <div class="head"><h2>Ticket médio por canal</h2></div>
+          <div class="card"><div class="bars" id="sBarsTicket"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blk" id="sRitmoSec">
       <div class="head"><h2>Ritmo de vendas</h2><span class="note">cotas acumuladas ao longo da campanha</span></div>
       <div class="card chartbox">
         <svg class="area" id="area" preserveAspectRatio="none" role="img" aria-label="Cotas vendidas acumuladas ao longo do tempo"></svg>
@@ -401,7 +440,7 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
       </div>
     </section>
 
-    <section class="blk">
+    <section class="blk" id="sDiaSec">
       <div class="head"><h2>Cotas por dia</h2><span class="note">quanto entrou em cada dia com movimento</span></div>
       <div class="card">
         <div class="cols" id="colsDia"></div>
@@ -409,7 +448,7 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
       </div>
     </section>
 
-    <section class="blk">
+    <section class="blk" id="sMixSec">
       <div class="grid2">
         <div>
           <div class="head"><h2>Formas de pagamento</h2></div>
@@ -420,11 +459,6 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
           <div class="card"><div class="bars" id="barsFaixa"></div></div>
         </div>
       </div>
-    </section>
-
-    <section class="blk">
-      <div class="head"><h2>Origem das vendas</h2><span class="note">quanto veio de cada afiliado e quanto veio direto</span></div>
-      <div class="card"><div class="bars" id="barsOrigem"></div></div>
     </section>
   </div>
 
@@ -475,10 +509,10 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
       <div>
         <div class="eyebrow">Afiliados</div>
         <h1>Vendas por afiliado</h1>
-        <p class="sub">Cada afiliado com seus próprios números. Clique em um deles para ver o total, a comissão e todas as vendas que passaram por ele.</p>
+        <p class="sub">Cada afiliado com seus próprios números, a participação dele nas vendas e quanto essa mesma participação vale nos dois bolos sem dono.</p>
       </div>
       <div class="figure">
-        <div class="k">Comissões a pagar</div>
+        <div class="k">A repartir entre os afiliados</div>
         <div class="big num" id="aBig">—</div>
         <div class="s" id="aBigS"></div>
       </div>
@@ -505,11 +539,19 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
       </div>
     </section>
 
+    <section class="blk" id="vipSec">
+      <div class="head">
+        <h2>Divisão dos bolos</h2>
+        <span class="note">os dois são repartidos pela mesma participação de cada um</span>
+      </div>
+      <div class="grid2" id="bolosWrap"></div>
+    </section>
+
     <section class="blk">
-      <div class="head"><h2>Todos</h2><span class="note">comissão calculada sobre cotas já pagas</span></div>
+      <div class="head"><h2>Todos</h2><span class="note">participação e fatia do bolo lado a lado</span></div>
       <div class="scroll">
         <table id="tAfi">
-          <thead><tr><th>Afiliado</th><th class="r">Faturamento</th><th class="r">Vendas</th><th class="r">Ticket médio</th><th class="r">Pendente</th><th class="r">Comissão</th><th class="r">A pagar</th><th>Status</th></tr></thead>
+          <thead><tr><th>Afiliado</th><th class="r">Faturamento</th><th class="r">Vendas</th><th class="r">Participação</th><th class="r">Do Grupo VIP</th><th class="r">Sem link</th><th class="r">Total</th></tr></thead>
           <tbody></tbody><tfoot></tfoot>
         </table>
       </div>
@@ -587,69 +629,56 @@ footer{padding:48px 0 40px;margin-top:40px;border-top:1px solid var(--line-soft)
    ========================================================================== */
 const DADOS = {
   atualizadoEm: "23/08/2026",
-  exemplo: true,
+  exemplo: false,
+  aviso: "Números vindos da plataforma. Falta lançar as despesas e o detalhamento por comprador.",
 
   rifas: [
     {
-      id: "r01",
-      curto: "Rifa 01",
-      nome: "Setup Gamer Completo",
-      subtitulo: "PC Custom BENSA com RTX, monitor 165 Hz, cadeira e kit de periféricos — montado e otimizado por nós.",
-      status: "aberta",                 // aberta | encerrada | sorteada
-      precoCota: 25,
-      totalCotas: 500,
-      dataSorteio: "2026-10-05",
+      id: "r03",
+      curto: "Rifa 03",
+      nome: "PC Extremo",
+      subtitulo: "Rifa da BENSA Setups. Confira os números de cada canal de venda e o andamento da campanha.",
+      status: "encerrada",              // aberta | encerrada | sorteada
+      periodo: { inicio:"2026-07-23", fim:"2026-08-23" },
+      dataSorteio: "",                  // preencher quando marcado
+      precoCota: null,                  // preencher quando definido
+      totalCotas: null,
 
-      cotas: [
-        { numeros:"001-010", comprador:"Lucas Ferreira",  qtd:10, pagamento:"Pix",     status:"pago",     afiliado:"Venda direta", data:"2026-08-02" },
-        { numeros:"011-014", comprador:"Marina Alves",    qtd:4,  pagamento:"Pix",     status:"pago",     afiliado:"Tonyboy",         data:"2026-08-03" },
-        { numeros:"015",     comprador:"Pedro Santos",    qtd:1,  pagamento:"Dinheiro",status:"pago",     afiliado:"Tonyboy",         data:"2026-08-03" },
-        { numeros:"016-035", comprador:"Thiago Moraes",   qtd:20, pagamento:"Pix",     status:"pago",     afiliado:"Grupo VIP"   , data:"2026-08-05" },
-        { numeros:"036-040", comprador:"Camila Dias",     qtd:5,  pagamento:"Cartão",  status:"pendente", afiliado:"NGVieira",          data:"2026-08-06" },
-        { numeros:"041-048", comprador:"João Nogueira",   qtd:8,  pagamento:"Pix",     status:"pago",     afiliado:"NGVieira",          data:"2026-08-08" },
-        { numeros:"049-052", comprador:"Ana Beatriz",     qtd:4,  pagamento:"Pix",     status:"pago",     afiliado:"Tonyboy",         data:"2026-08-09" },
-        { numeros:"053-062", comprador:"Rodrigo Lima",    qtd:10, pagamento:"Pix",     status:"pago",     afiliado:"Venda direta", data:"2026-08-11" },
-        { numeros:"063-064", comprador:"Fernanda Rocha",  qtd:2,  pagamento:"Dinheiro",status:"pendente", afiliado:"Snarfx",      data:"2026-08-12" },
-        { numeros:"065-079", comprador:"Vitor Hugo",      qtd:15, pagamento:"Pix",     status:"pago",     afiliado:"Snarfx",      data:"2026-08-14" },
-        { numeros:"080-085", comprador:"Larissa Prado",   qtd:6,  pagamento:"Pix",     status:"pago",     afiliado:"NGVieira",          data:"2026-08-16" },
-        { numeros:"086",     comprador:"Caio Bernardes",  qtd:1,  pagamento:"Pix",     status:"pago",     afiliado:"Grupo VIP"   , data:"2026-08-17" },
-        { numeros:"087-098", comprador:"Juliana Freitas", qtd:12, pagamento:"Cartão",  status:"pago",     afiliado:"Tonyboy",         data:"2026-08-19" },
-        { numeros:"099-106", comprador:"Bruno Tavares",   qtd:8,  pagamento:"Pix",     status:"pendente", afiliado:"Snarfx",      data:"2026-08-21" },
-        { numeros:"107-116", comprador:"Sofia Menezes",   qtd:10, pagamento:"Pix",     status:"pago",     afiliado:"NGVieira",          data:"2026-08-22" }
-      ],
+      // Totais da rifa, direto da plataforma
+      totais: {
+        faturamento: 461553.30,
+        pedidosPagos: 21802,
+        finalizadas:  21802,
+        compradores:  21802,
+        pendentesValor: 0, pendentesQtd: 0,
+        expiradosValor: 0, expiradosQtd: 0
+      },
 
-      // Métricas vindas da plataforma. Se um afiliado não tiver "metricas",
-      // os números são calculados a partir da lista de cotas.
+      // O Grupo VIP é o bolo sem dono: reparte entre os afiliados na mesma
+      // proporção em que cada um vendeu.
+      grupoVip: { faturamento:32977.20, pedidosPagos:1337, compradores:1337 },
+
+      // Afiliados. Não há comissão em percentual: o que cada um leva do
+      // Grupo VIP sai da participação dele nas vendas.
       afiliados: [
-        { nome:"Tonyboy",   comissaoPct:20, comissaoPaga:false,
-          metricas:{ faturamento:78420.50, pedidosPagos:4021, finalizadas:4021, compradores:3180,
-                     pendentesValor:1240.00, pendentesQtd:64, expiradosValor:880.50, expiradosQtd:45 } },
-        { nome:"NGVieira",  comissaoPct:20, comissaoPaga:false,
-          metricas:{ faturamento:64980.00, pedidosPagos:3332, finalizadas:3332, compradores:2610,
-                     pendentesValor:975.00, pendentesQtd:50, expiradosValor:604.50, expiradosQtd:31 } },
-        { nome:"Snarfx",    comissaoPct:20, comissaoPaga:false,
-          metricas:{ faturamento:52130.10, pedidosPagos:2673, finalizadas:2673, compradores:2094,
-                     pendentesValor:526.50, pendentesQtd:27, expiradosValor:390.00, expiradosQtd:20 } },
-        { nome:"Grupo VIP", comissaoPct:20, comissaoPaga:false,
-          metricas:{ faturamento:41092.00, pedidosPagos:2108, finalizadas:2108, compradores:1702,
-                     pendentesValor:409.50, pendentesQtd:21, expiradosValor:214.50, expiradosQtd:11 } }
+        { nome:"Tonyboy",
+          metricas:{ faturamento:236622.60, pedidosPagos:12134, finalizadas:12134, compradores:12134,
+                     pendentesValor:0, pendentesQtd:0, expiradosValor:0, expiradosQtd:0 } },
+        { nome:"NGVieira",
+          metricas:{ faturamento:104012.40, pedidosPagos:4185, finalizadas:4185, compradores:4185,
+                     pendentesValor:0, pendentesQtd:0, expiradosValor:0, expiradosQtd:0 } },
+        { nome:"Snarfx",
+          metricas:{ faturamento:2407.20, pedidosPagos:117, finalizadas:117, compradores:117,
+                     pendentesValor:0, pendentesQtd:0, expiradosValor:0, expiradosQtd:0 } }
       ],
 
-      despesas: [
-        { data:"2026-07-28", descricao:"Placa de vídeo do prêmio",   categoria:"Prêmio",     valor:2890, pagoPor:"Bensa", status:"pago" },
-        { data:"2026-07-28", descricao:"Gabinete, fonte e memórias", categoria:"Prêmio",     valor:1240, pagoPor:"Bensa", status:"pago" },
-        { data:"2026-07-30", descricao:"Monitor 165 Hz",             categoria:"Prêmio",     valor:890,  pagoPor:"Bensa", status:"pago" },
-        { data:"2026-08-01", descricao:"Impressão de bilhetes",      categoria:"Impressão",  valor:180,  pagoPor:"Bensa", status:"pago" },
-        { data:"2026-08-02", descricao:"Tráfego pago Instagram",     categoria:"Divulgação", valor:450,  pagoPor:"Bensa", status:"pago" },
-        { data:"2026-08-10", descricao:"Vídeo de divulgação",        categoria:"Divulgação", valor:320,  pagoPor:"Bensa", status:"pago" },
-        { data:"2026-08-15", descricao:"Taxa da maquininha",         categoria:"Taxas",      valor:96,   pagoPor:"Bensa", status:"pago" },
-        { data:"2026-08-20", descricao:"Frete do monitor",           categoria:"Logística",  valor:140,  pagoPor:"Bensa", status:"pendente" }
-      ],
+      cotas: [],      // detalhamento por comprador, quando houver
+      despesas: [],   // gastos da rifa
 
       premios: [
-        { titulo:"Prêmio principal",  criterio:"Número sorteado na Loteria Federal", numero:"", ganhador:"", data:"", entregue:false },
-        { titulo:"Maior cota",        criterio:"Quem comprou mais cotas",            numero:"", ganhador:"", data:"", entregue:false, auto:"maior" },
-        { titulo:"Menor cota",        criterio:"Quem comprou menos cotas",           numero:"", ganhador:"", data:"", entregue:false, auto:"menor" }
+        { titulo:"Prêmio principal", criterio:"Número sorteado na Loteria Federal", numero:"", ganhador:"", data:"", entregue:false },
+        { titulo:"Maior cota",       criterio:"Quem comprou mais cotas",            numero:"", ganhador:"", data:"", entregue:false, auto:"maior" },
+        { titulo:"Menor cota",       criterio:"Quem comprou menos cotas",           numero:"", ganhador:"", data:"", entregue:false, auto:"menor" }
       ]
     }
   ]
@@ -662,6 +691,7 @@ const brl0 = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maxi
 const int  = n => n.toLocaleString('pt-BR');
 const dbr  = s => s ? s.split('-').reverse().join('/') : '—';
 const pctS = n => (n*100).toFixed(n < .1 ? 1 : 0).replace('.',',') + '%';
+const pct1 = n => (n*100).toFixed(1).replace('.',',') + '%';
 
 const ABAS = [
   {id:'geral',      rot:'Visão geral'},
@@ -680,33 +710,42 @@ let filtro = 'todos', busca = '', afiFiltro = '', ordK = 'data', ordDir = -1;
 /* ---------- cálculos ---------- */
 function calc(r){
   const cotas = r.cotas || [];
-  const val = c => c.qtd * r.precoCota;
-  const pagas = cotas.filter(c => c.status === 'pago');
-  const abertas = cotas.filter(c => c.status !== 'pago');
-  const vendidas = cotas.reduce((s,c)=>s+c.qtd,0);
-  const arrec = pagas.reduce((s,c)=>s+val(c),0);
-  const receber = abertas.reduce((s,c)=>s+val(c),0);
+  const t = r.totais;
+  const agregado = !cotas.length && !!t;
+
+  const val = c => c.qtd * (r.precoCota||0);
+  const pagas = cotas.filter(c=>c.status==='pago');
+  const abertas = cotas.filter(c=>c.status!=='pago');
+
+  const arrec = agregado ? t.faturamento : pagas.reduce((s,c)=>s+val(c),0);
+  const pedidos = agregado ? t.pedidosPagos : pagas.length;
+  const compradores = agregado ? t.compradores : new Set(cotas.map(c=>c.comprador)).size;
+  const receber = agregado ? t.pendentesValor : abertas.reduce((s,c)=>s+val(c),0);
+  const receberQtd = agregado ? t.pendentesQtd : abertas.length;
+  const expValor = agregado ? (t.expiradosValor||0) : 0;
+  const expQtd = agregado ? (t.expiradosQtd||0) : 0;
+
   const desp = (r.despesas||[]).reduce((s,d)=>s+d.valor,0);
   const despPend = (r.despesas||[]).filter(d=>d.status!=='pago').reduce((s,d)=>s+d.valor,0);
-  const pctA = a => { const f = (r.afiliados||[]).find(x=>x.nome===a); return f ? f.comissaoPct : 0; };
-  const comissoes = pagas.reduce((s,c)=>s + val(c)*pctA(c.afiliado)/100, 0);
-  const aPagar = pagas.reduce((s,c)=>{
-    const f = (r.afiliados||[]).find(x=>x.nome===c.afiliado);
-    return s + (f && !f.comissaoPaga ? val(c)*f.comissaoPct/100 : 0);
-  },0);
+
+  const bs = bolos(r, resumoAfiliados(r));
+  const vendidas = cotas.reduce((s,c)=>s+c.qtd,0);
 
   const dias = [...new Set(cotas.map(c=>c.data))].sort();
   const span = dias.length > 1 ? (new Date(dias[dias.length-1]) - new Date(dias[0]))/86400000 + 1 : 1;
-  const ritmo = vendidas / span;
-  const restam = r.totalCotas - vendidas;
+  const ritmo = vendidas/span;
+  const restam = (r.totalCotas||0) - vendidas;
 
   return {
-    val, pagas, abertas, vendidas, arrec, receber, desp, despPend, comissoes, aPagar,
-    lucro: arrec - desp - comissoes,
-    potencial: r.totalCotas * r.precoCota,
-    pct: r.totalCotas ? vendidas/r.totalCotas : 0,
-    inad: cotas.length ? abertas.reduce((s,c)=>s+c.qtd,0)/vendidas : 0,
-    ticket: cotas.length ? cotas.reduce((s,c)=>s+val(c),0)/cotas.length : 0,
+    agregado, val, pagas, abertas,
+    arrec, pedidos, compradores, receber, receberQtd, expValor, expQtd,
+    desp, despPend, comissoes: 0,
+    boloVip: bs.vip.valor, boloSemLink: bs.semLink.valor, boloTotal: bs.total,
+    lucro: arrec - desp,
+    ticket: pedidos ? arrec/pedidos : 0,
+    vendidas, pct: r.totalCotas ? vendidas/r.totalCotas : 0,
+    potencial: (r.totalCotas||0) * (r.precoCota||0),
+    inad: arrec+receber > 0 ? receber/(arrec+receber) : 0,
     mediaCotas: cotas.length ? vendidas/cotas.length : 0,
     dias, span, ritmo, restam,
     diasParaFim: ritmo > 0 ? Math.ceil(restam/ritmo) : null
@@ -787,88 +826,136 @@ function renderGeral(c){
   $('#gEyebrow').textContent = r.curto + ' · ' + rot;
   $('#gTitle').textContent = r.nome;
   $('#gSub').textContent = r.subtitulo || '';
-  $('#gCota').textContent = brl(r.precoCota);
-  $('#gData').textContent = dbr(r.dataSorteio);
+  $('#gData').textContent = r.dataSorteio ? dbr(r.dataSorteio) : 'a definir';
   $('#gStatus').textContent = rot;
-  const d = Math.ceil((new Date(r.dataSorteio) - new Date())/86400000);
-  $('#gFalta').textContent = isNaN(d) ? '—' : (d > 0 ? d + ' dias' : 'sorteada');
 
-  $('#ring').style.setProperty('--p', (c.pct*360)+'deg');
-  $('#ringPct').textContent = Math.round(c.pct*100) + '%';
-  $('#ringLbl').textContent = int(c.vendidas) + ' de ' + int(r.totalCotas) + ' cotas';
+  const per = r.periodo;
+  $('#gPeriodoWrap').style.display = per ? 'flex' : 'none';
+  if(per){
+    const curto = d => d ? d.split('-').reverse().slice(0,2).join('/') : '—';
+    $('#gPeriodo').textContent = curto(per.inicio) + ' – ' + curto(per.fim);
+    const dias = Math.round((new Date(per.fim) - new Date(per.inicio))/86400000);
+    $('#gFaltaK').textContent = 'Duração';
+    $('#gFalta').textContent = dias + ' dias';
+  } else {
+    const dd = Math.ceil((new Date(r.dataSorteio) - new Date())/86400000);
+    $('#gFaltaK').textContent = 'Faltam';
+    $('#gFalta').textContent = isNaN(dd) ? '—' : (dd > 0 ? dd + ' dias' : 'encerrada');
+  }
+  $('#gCotaWrap').style.display = r.precoCota ? 'flex' : 'none';
+  if(r.precoCota) $('#gCota').textContent = brl(r.precoCota);
 
-  $('#kArrec').textContent = brl0(c.arrec);
-  $('#kArrecS').textContent = 'de ' + brl0(c.potencial) + ' possíveis';
-  $('#kReceber').textContent = brl0(c.receber);
-  $('#kReceberS').innerHTML = c.receber > 0 ? '<span class="st pend">pagamentos pendentes</span>' : '<span class="st ok">tudo quitado</span>';
-  $('#kDesp').textContent = brl0(c.desp);
-  $('#kDespS').textContent = c.despPend > 0 ? brl0(c.despPend) + ' ainda a pagar' : 'todas quitadas';
-  $('#kCom').textContent = brl0(c.comissoes);
-  $('#kComS').textContent = (atual.afiliados||[]).length + ' afiliados ativos';
-  $('#kLucro').textContent = brl0(c.lucro);
-  $('#kLucro').className = 'v num' + (c.lucro >= 0 ? '' : ' neg');
-  $('#kLucroS').textContent = c.lucro >= 0 ? 'já no positivo' : 'ainda no vermelho';
+  /* figura do hero: anel quando há contagem de cotas, faturamento quando não há */
+  if(r.totalCotas && c.vendidas){
+    $('#gFigura').outerHTML = '<div class="ring" id="gFigura" style="--p:'+(c.pct*360)+'deg">'+
+      '<div class="track"></div><div class="mid">'+
+      '<span class="pct num">'+Math.round(c.pct*100)+'%</span>'+
+      '<span class="lbl">'+int(c.vendidas)+' de '+int(r.totalCotas)+' cotas</span></div></div>';
+  } else {
+    $('#gFigura').outerHTML = '<div class="figure" id="gFigura">'+
+      '<div class="k">Faturamento</div>'+
+      '<div class="big num">'+brl0(c.arrec)+'</div>'+
+      '<div class="s">'+int(c.pedidos)+' pedidos pagos</div></div>';
+  }
+
+  $('#gNota').textContent = c.agregado ? 'direto da plataforma' : 'calculado pelos lançamentos';
+
+  $('#gMetricas').innerHTML =
+    cardM('money','R$', brl(c.arrec),        'Faturamento', 'confirmado na campanha') +
+    cardM('gold','#',   int(c.pedidos),      'Pedidos pagos', 'pagos/aprovados') +
+    cardM('gold','✓',   int(c.pedidos),      'Vendas finalizadas', 'no período selecionado') +
+    cardM('gold','◎',   int(c.compradores),  'Compradores', 'total de pedidos na campanha');
+
+  const liquido = c.arrec - c.desp;
+  $('#gMetricasSub').innerHTML =
+    cardS('good', brl(c.arrec),    'Pedidos pagos', int(c.pedidos)+' pedido(s)') +
+    cardS('warn', brl(c.receber),  'Pedidos pendentes', int(c.receberQtd)+' pedido(s)') +
+    cardS('bad',  brl(c.expValor), 'Pedidos expirados', int(c.expQtd)+' pedido(s)') +
+    cardS('',     brl(c.ticket),   'Ticket médio', int(c.pedidos)+' pedido(s) no recorte') +
+    cardS('', brl(c.boloVip), 'Grupo VIP a repartir', 'entre os afiliados, por participação') +
+    cardS('', brl(c.boloSemLink), 'Vendas sem link a repartir', 'mesma proporção de cada afiliado') +
+    cardS('',     brl(c.desp),     'Despesas', (r.despesas||[]).length ? (r.despesas.length+' lançamento(s)') : 'nada lançado ainda') +
+    cardS(liquido>=0?'good':'bad', brl(liquido), 'Sobra depois das despesas', 'faturamento − despesas');
+
+  /* origem do faturamento */
+  const cs = canais(r).filter(a=>a.faturamento > 0);
+  $('#gOrigemSec').style.display = cs.length ? 'block' : 'none';
+  if(cs.length){
+    barras($('#gOrigem'),
+      cs.map(a=>({k:a.nome, v:a.faturamento})),
+      (v)=> brl0(v) + ' · ' + pctS(c.arrec ? v/c.arrec : 0));
+  }
+
+  /* blocos que dependem do detalhamento cota a cota */
+  const temCotas = (r.cotas||[]).length > 0;
+  $('#gDestaquesSec').style.display = temCotas ? 'block' : 'none';
+  $('#gUltimosSec').style.display = temCotas ? 'block' : 'none';
+  if(!temCotas) return;
 
   const box = $('#destaques'); box.innerHTML = '';
-  const ord = [...(r.cotas||[])].sort((a,b)=>b.qtd-a.qtd);
-  if(!ord.length){ box.innerHTML = '<div class="card" style="color:var(--ink3)">Nenhuma cota lançada ainda.</div>'; }
-  else [{tag:'Maior cota', c:ord[0]}, {tag:'Menor cota', c:ord[ord.length-1]}].forEach(x=>{
+  const ord = [...r.cotas].sort((a,b)=>b.qtd-a.qtd);
+  [{tag:'Maior cota', c:ord[0]}, {tag:'Menor cota', c:ord[ord.length-1]}].forEach(x=>{
     const d2 = document.createElement('div'); d2.className = 'hl';
     d2.innerHTML = '<div class="tag">'+x.tag+'</div><div class="name">'+x.c.comprador+'</div>'+
       '<div class="row">'+
       '<div><span class="k">Cotas</span><span class="v mono">'+x.c.qtd+'</span></div>'+
-      '<div><span class="k">Valor</span><span class="v mono">'+brl(x.c.qtd*r.precoCota)+'</span></div>'+
+      '<div><span class="k">Valor</span><span class="v mono">'+brl(x.c.qtd*(r.precoCota||0))+'</span></div>'+
       '<div><span class="k">Números</span><span class="v mono">'+x.c.numeros+'</span></div>'+
       '<div><span class="k">Afiliado</span><span class="v">'+x.c.afiliado+'</span></div></div>';
     box.appendChild(d2);
   });
 
   const tb = $('#tUlt tbody'); tb.innerHTML = '';
-  [...(r.cotas||[])].sort((a,b)=> a.data < b.data ? 1 : -1).slice(0,5).forEach(x=>{
+  [...r.cotas].sort((a,b)=> a.data < b.data ? 1 : -1).slice(0,5).forEach(x=>{
     const tr = document.createElement('tr');
     tr.innerHTML = '<td class="mono">'+x.numeros+'</td><td>'+x.comprador+'</td>'+
-      '<td class="r mono">'+x.qtd+'</td><td class="r mono">'+brl(x.qtd*r.precoCota)+'</td>'+
+      '<td class="r mono">'+x.qtd+'</td><td class="r mono">'+brl(x.qtd*(r.precoCota||0))+'</td>'+
       '<td><span class="st '+(x.status==='pago'?'ok':'pend')+'">'+x.status+'</span></td>'+
       '<td>'+x.afiliado+'</td><td class="mono">'+dbr(x.data)+'</td>';
     tb.appendChild(tr);
   });
-  if(!(r.cotas||[]).length) tb.innerHTML = '<tr class="empty-row"><td colspan="7">Nada lançado ainda.</td></tr>';
   rotular('#tUlt');
 }
 
 /* ---------- estatísticas ---------- */
 function renderStats(c){
   const r = atual, cotas = r.cotas || [];
-  $('#sTicket').textContent = brl0(c.ticket);
-  $('#sTicketS').textContent = 'por compra, média de ' + c.mediaCotas.toFixed(1).replace('.',',') + ' cotas';
-  $('#sComp').textContent = int(cotas.length);
-  $('#sCompS').textContent = c.pagas.length + ' já pagaram';
-  $('#sMedia').textContent = c.mediaCotas.toFixed(1).replace('.',',');
-  $('#sMediaS').textContent = cotas.length ? 'de ' + Math.min(...cotas.map(x=>x.qtd)) + ' a ' + Math.max(...cotas.map(x=>x.qtd)) + ' cotas' : '—';
-  $('#sRitmo').textContent = c.ritmo.toFixed(1).replace('.',',');
-  $('#sRitmoS').textContent = 'cotas por dia em ' + Math.round(c.span) + ' dias';
-  if(c.diasParaFim && c.restam > 0){
-    const alvo = new Date(Date.now() + c.diasParaFim*86400000);
-    $('#sProj').textContent = alvo.toLocaleDateString('pt-BR');
-    $('#sProjS').textContent = 'nesse ritmo, faltam ' + c.diasParaFim + ' dias';
-  } else {
-    $('#sProj').textContent = c.restam <= 0 ? 'Esgotada' : '—';
-    $('#sProjS').textContent = c.restam <= 0 ? 'todas as cotas vendidas' : 'sem ritmo para projetar';
-  }
-  $('#sInad').textContent = pctS(c.inad);
-  $('#sInadS').textContent = brl0(c.receber) + ' em aberto';
+  const cs = canais(r).filter(a=>a.faturamento > 0 || a.vendas > 0);
+
+  $('#sTicket').textContent = brl(c.ticket);
+  $('#sTicketS').textContent = int(c.pedidos) + ' pedidos pagos no recorte';
+
+  const maior = cs[0];
+  $('#sKpis').innerHTML =
+    '<div class="kpi"><div class="k">Compradores</div><div class="v num">'+int(c.compradores)+'</div><div class="s">no período</div></div>'+
+    '<div class="kpi"><div class="k">Pedidos pagos</div><div class="v num">'+int(c.pedidos)+'</div><div class="s">aprovados</div></div>'+
+    '<div class="kpi"><div class="k">Canais ativos</div><div class="v num">'+cs.length+'</div><div class="s">afiliados + venda direta</div></div>'+
+    '<div class="kpi"><div class="k">Maior canal</div><div class="v" style="font-size:19px">'+(maior?maior.nome:'—')+'</div><div class="s">'+(maior?pctS(c.arrec?maior.faturamento/c.arrec:0)+' do faturamento':'—')+'</div></div>'+
+    '<div class="kpi"><div class="k">Pendentes</div><div class="v num">'+brl0(c.receber)+'</div><div class="s">'+int(c.receberQtd)+' pedido(s)</div></div>';
+
+  barras($('#sBarsFat'), cs.map(a=>({k:a.nome,v:a.faturamento})),
+    v => brl0(v) + ' · ' + pctS(c.arrec ? v/c.arrec : 0));
+  barras($('#sBarsPed'), cs.map(a=>({k:a.nome,v:a.vendas})).sort((a,b)=>b.v-a.v),
+    v => int(v) + ' pedidos');
+  barras($('#sBarsTicket'), cs.map(a=>({k:a.nome,v:a.ticket})).sort((a,b)=>b.v-a.v),
+    v => brl(v));
+
+  /* gráficos que dependem de data e de cota a cota */
+  const temCotas = cotas.length > 0;
+  $('#sRitmoSec').style.display = temCotas ? 'block' : 'none';
+  $('#sDiaSec').style.display = temCotas ? 'block' : 'none';
+  $('#sMixSec').style.display = temCotas ? 'block' : 'none';
+  $('#sSub').textContent = temCotas
+    ? 'Ritmo de vendas, tamanho médio de compra, mix de pagamento e o peso de cada canal.'
+    : 'Ticket médio e o peso de cada canal de venda. Ritmo e mix de pagamento aparecem quando houver o detalhamento por pedido.';
+  if(!temCotas) return;
 
   const pag = {}; cotas.forEach(x => pag[x.pagamento] = (pag[x.pagamento]||0) + x.qtd);
-  barras($('#barsPag'), Object.entries(pag).map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v),
-    v => int(v) + ' cotas');
+  barras($('#barsPag'), Object.entries(pag).map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v), v => int(v)+' cotas');
 
   const faixas = [{k:'1 cota',t:x=>x===1},{k:'2 a 5',t:x=>x>=2&&x<=5},{k:'6 a 10',t:x=>x>=6&&x<=10},{k:'11 ou mais',t:x=>x>=11}];
   barras($('#barsFaixa'), faixas.map(f=>({k:f.k, v:cotas.filter(x=>f.t(x.qtd)).length})),
     v => v + (v===1 ? ' compra' : ' compras'));
-
-  const orig = {}; cotas.forEach(x => orig[x.afiliado] = (orig[x.afiliado]||0) + x.qtd);
-  barras($('#barsOrigem'), Object.entries(orig).map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v),
-    v => int(v) + ' cotas · ' + pctS(c.vendidas ? v/c.vendidas : 0));
 
   const porDia = new Map();
   cotas.forEach(x => porDia.set(x.data, (porDia.get(x.data)||0) + x.qtd));
@@ -876,8 +963,8 @@ function renderStats(c){
   const maxDia = Math.max(1, ...dias.map(d=>d[1]));
   const cols = $('#colsDia'); cols.innerHTML = '';
   dias.forEach(([d,v])=>{
-    const el = document.createElement('div'); el.className = 'col';
-    el.title = dbr(d) + ' · ' + v + ' cotas';
+    const el = document.createElement('div'); el.className='col';
+    el.title = dbr(d)+' · '+v+' cotas';
     el.innerHTML = '<div class="b" style="height:'+(v/maxDia*100).toFixed(1)+'%"></div>';
     cols.appendChild(el);
   });
@@ -1013,41 +1100,71 @@ function renderCotas(c){
 /* ---------- afiliados ---------- */
 let afiSel = null;
 
-/* Usa as métricas da plataforma quando existirem; senão calcula pela lista de cotas. */
+/* Só os afiliados de verdade. Participação = fatia dele na soma dos afiliados;
+   é essa mesma fatia que ele puxa do bolo do Grupo VIP. */
 function resumoAfiliados(r){
-  const nomes = new Set((r.cotas||[]).map(x=>x.afiliado));
-  (r.afiliados||[]).forEach(a => nomes.add(a.nome));
-
-  return [...nomes].map(n=>{
-    const f = (r.afiliados||[]).find(a=>a.nome===n);
-    const linhas = (r.cotas||[]).filter(x=>x.afiliado===n);
-    const m = f && f.metricas;
-
+  const lista = (r.afiliados||[]).map(f=>{
+    const linhas = (r.cotas||[]).filter(x=>x.afiliado===f.nome);
+    const m = f.metricas;
     const faturamento = m ? m.faturamento
-      : linhas.filter(x=>x.status==='pago').reduce((s,x)=>s+x.qtd*r.precoCota,0);
+      : linhas.filter(x=>x.status==='pago').reduce((s,x)=>s+x.qtd*(r.precoCota||0),0);
     const vendas = m ? m.pedidosPagos : linhas.filter(x=>x.status==='pago').length;
-    const finalizadas = m ? m.finalizadas : vendas;
-    const compradores = m ? m.compradores : new Set(linhas.map(x=>x.comprador)).size;
-    const pendValor = m ? m.pendentesValor
-      : linhas.filter(x=>x.status==='pendente').reduce((s,x)=>s+x.qtd*r.precoCota,0);
-    const pendQtd = m ? m.pendentesQtd : linhas.filter(x=>x.status==='pendente').length;
-    const expValor = m ? (m.expiradosValor||0) : 0;
-    const expQtd = m ? (m.expiradosQtd||0) : 0;
-    const pct = f ? f.comissaoPct : 0;
-
     return {
-      nome:n, linhas, direta: !f, pct,
-      faturamento, vendas, finalizadas, compradores,
-      pendValor, pendQtd, expValor, expQtd,
-      ticket: vendas ? faturamento/vendas : 0,
-      com: faturamento*pct/100,
-      pago: f ? f.comissaoPaga : true,
-      temMetricas: !!m
+      nome:f.nome, linhas, faturamento, vendas,
+      finalizadas: m ? m.finalizadas : vendas,
+      compradores: m ? m.compradores : new Set(linhas.map(x=>x.comprador)).size,
+      pendValor: m ? m.pendentesValor : 0, pendQtd: m ? m.pendentesQtd : 0,
+      expValor: m ? (m.expiradosValor||0) : 0, expQtd: m ? (m.expiradosQtd||0) : 0,
+      ticket: vendas ? faturamento/vendas : 0
     };
-  }).sort((a,b)=>{
-    if(a.direta !== b.direta) return a.direta ? 1 : -1;
-    return a.nome.localeCompare(b.nome,'pt-BR');
   });
+  const base = lista.reduce((s,a)=>s+a.faturamento,0);
+  const b = bolos(r, lista);
+  lista.forEach(a=>{
+    a.part = base ? a.faturamento/base : 0;
+    a.cotaVip = b.vip.valor * a.part;
+    a.cotaSemLink = b.semLink.valor * a.part;
+    a.cotaBolos = a.cotaVip + a.cotaSemLink;
+    a.total = a.faturamento + a.cotaBolos;
+  });
+  return lista.sort((a,b)=>b.faturamento-a.faturamento);
+}
+
+/* Os dois bolos sem dono: o Grupo VIP e as vendas que entraram sem link nenhum. */
+function bolos(r, lista){
+  const vip = r.grupoVip || {faturamento:0, pedidosPagos:0};
+  const t = r.totais;
+  let semFat = 0, semPed = 0;
+  if(t){
+    semFat = t.faturamento - (lista||[]).reduce((s,a)=>s+a.faturamento,0) - vip.faturamento;
+    semPed = t.pedidosPagos - (lista||[]).reduce((s,a)=>s+a.vendas,0) - (vip.pedidosPagos||0);
+  }
+  return {
+    vip:     { nome:'Grupo VIP',      valor: vip.faturamento, pedidos: vip.pedidosPagos||0,
+               nota:'pedidos sem afiliado' },
+    semLink: { nome:'Vendas sem link', valor: Math.max(0,semFat), pedidos: Math.max(0,semPed),
+               nota:'entraram direto, sem link de ninguém' },
+    total: vip.faturamento + Math.max(0,semFat)
+  };
+}
+
+/* Todos os canais de entrada, inclusive os que não são afiliado. */
+function canais(r){
+  const lista = resumoAfiliados(r).map(a=>({nome:a.nome, faturamento:a.faturamento, vendas:a.vendas, ticket:a.ticket}));
+  if(r.grupoVip){
+    const g = r.grupoVip;
+    lista.push({nome:'Grupo VIP', faturamento:g.faturamento, vendas:g.pedidosPagos,
+                ticket: g.pedidosPagos ? g.faturamento/g.pedidosPagos : 0});
+  }
+  const t = r.totais;
+  if(t){
+    const fat = t.faturamento - lista.reduce((s,a)=>s+a.faturamento,0);
+    const ped = t.pedidosPagos - lista.reduce((s,a)=>s+a.vendas,0);
+    if(fat > 0.005 || ped > 0){
+      lista.push({nome:'Vendas sem link', faturamento:fat, vendas:ped, ticket: ped ? fat/ped : 0});
+    }
+  }
+  return lista.sort((a,b)=>b.faturamento-a.faturamento);
 }
 
 function cardM(cls, ico, valor, rotulo, sub){
@@ -1063,97 +1180,114 @@ function cardS(cls, valor, rotulo, sub){
 function renderAfiliados(c){
   const r = atual;
   const dados = resumoAfiliados(r);
+  const b = bolos(r, dados);
   if(!dados.some(d=>d.nome===afiSel)) afiSel = dados.length ? dados[0].nome : null;
 
-  const aPagar = dados.filter(d=>!d.direta && !d.pago).reduce((s,d)=>s+d.com,0);
-  $('#aBig').textContent = brl0(aPagar);
-  $('#aBigS').textContent = dados.filter(d=>!d.direta && !d.pago && d.com>0).length + ' com comissão em aberto';
+  $('#aBig').textContent = brl0(b.total);
+  $('#aBigS').textContent = 'Grupo VIP ' + brl0(b.vip.valor) + ' + sem link ' + brl0(b.semLink.valor);
 
-  /* cartões selecionáveis */
+  /* cartões: participação sempre visível */
   const cards = $('#afiCards'); cards.innerHTML = '';
   if(!dados.length) cards.innerHTML = '<div class="card" style="color:var(--ink3)">Nenhum afiliado cadastrado ainda.</div>';
   dados.forEach(d=>{
-    const b = document.createElement('button');
-    b.type='button'; b.className='pick';
-    b.setAttribute('aria-pressed', String(d.nome===afiSel));
-    b.innerHTML = '<span class="nome">'+d.nome+'</span>'+
+    const btn = document.createElement('button');
+    btn.type='button'; btn.className='pick';
+    btn.setAttribute('aria-pressed', String(d.nome===afiSel));
+    btn.innerHTML =
+      '<span class="pick-top"><span class="nome">'+d.nome+'</span><span class="share">'+pct1(d.part)+'</span></span>'+
+      '<span class="sharebar"><span style="width:'+(d.part*100).toFixed(2)+'%"></span></span>'+
       '<span class="linhas">'+
         '<div><span class="k">Faturamento</span><span class="v">'+brl0(d.faturamento)+'</span></div>'+
         '<div><span class="k">Vendas</span><span class="v">'+int(d.vendas)+'</span></div>'+
-        '<div><span class="k">Ticket</span><span class="v">'+brl(d.ticket)+'</span></div>'+
+        '<div><span class="k">Dos bolos</span><span class="v vip">'+brl0(d.cotaBolos)+'</span></div>'+
       '</span>';
-    b.onclick = ()=>{ afiSel = d.nome; renderAfiliados(calc(atual)); };
-    cards.appendChild(b);
+    btn.onclick = ()=>{ afiSel = d.nome; renderAfiliados(calc(atual)); };
+    cards.appendChild(btn);
   });
 
-  /* detalhe */
+  /* detalhe enxuto: cartões pequenos, um único destaque */
   const d = dados.find(x=>x.nome===afiSel);
-  const det = $('#afiDetalhe');
-  det.style.display = d ? 'block' : 'none';
+  $('#afiDetalhe').style.display = d ? 'block' : 'none';
   if(d){
     $('#afiNome').textContent = d.nome;
-    $('#afiNota').textContent = d.direta ? 'vendas diretas, sem comissão'
-                                         : d.pct + '% de comissão sobre o faturamento confirmado';
-
-    $('#afiMetricas').innerHTML =
-      cardM('money','R$', brl(d.faturamento), 'Faturamento', 'confirmado no período') +
-      cardM('gold','#',   int(d.vendas),      'Vendas pagas', 'pedidos aprovados') +
-      cardM('gold','✓',   int(d.finalizadas), 'Vendas finalizadas', 'no período selecionado') +
-      cardM('gold','◎',   int(d.compradores), 'Compradores', 'pessoas distintas');
-
+    $('#afiNota').textContent = 'vendeu ' + pct1(d.part) + ' do que os afiliados venderam';
+    $('#afiMetricas').innerHTML = '';
     $('#afiMetricasSub').innerHTML =
-      cardS('good', brl(d.faturamento), 'Pedidos pagos', int(d.vendas)+' pedido(s)') +
-      cardS('warn', brl(d.pendValor),   'Pedidos pendentes', int(d.pendQtd)+' pedido(s)') +
-      cardS('bad',  brl(d.expValor),    'Pedidos expirados', int(d.expQtd)+' pedido(s)') +
-      cardS('',     brl(d.ticket),      'Ticket médio', int(d.vendas)+' pedido(s) no recorte') +
-      cardS('',     d.direta ? '—' : d.pct+'%', 'Comissão', d.direta ? 'venda direta' : 'sobre o faturamento') +
-      cardS('',     d.direta ? '—' : brl(d.com), 'A pagar', d.direta ? 'sem comissão' : (d.pago ? 'já quitada' : 'em aberto'));
+      cardS('good', brl(d.faturamento),  'Faturamento', int(d.vendas)+' pedidos pagos') +
+      cardS('',     pct1(d.part),        'Participação', 'entre os afiliados') +
+      cardS('',     brl(d.cotaVip),      'Do Grupo VIP', 'sobre ' + brl0(b.vip.valor)) +
+      cardS('',     brl(d.cotaSemLink),  'Das vendas sem link', 'sobre ' + brl0(b.semLink.valor)) +
+      cardS('',     brl(d.ticket),       'Ticket médio', int(d.vendas)+' pedidos no recorte') +
+      cardS('',     int(d.compradores),  'Compradores', 'no período') +
+      cardS('warn', brl(d.pendValor),    'Pendentes', int(d.pendQtd)+' pedido(s)') +
+      cardS('bad',  brl(d.expValor),     'Expirados', int(d.expQtd)+' pedido(s)') +
+      '<div class="m small destaque"><div class="k">Total dele</div><div class="v num">'+brl(d.total)+
+      '</div><div class="s">faturamento + fatia dos dois bolos</div></div>';
 
-    /* lista de vendas, quando houver detalhamento por cota */
     const sec = $('#afiVendas');
     sec.style.display = d.linhas.length ? 'block' : 'none';
     if(d.linhas.length){
       const tb = $('#tAfiCotas tbody'); tb.innerHTML='';
-      [...d.linhas].sort((a,b)=> a.data < b.data ? 1 : -1).forEach(x=>{
+      [...d.linhas].sort((x,y)=> x.data < y.data ? 1 : -1).forEach(x=>{
         const tr = document.createElement('tr');
         tr.innerHTML = '<td class="mono">'+x.numeros+'</td><td>'+x.comprador+'</td>'+
-          '<td class="r mono">'+x.qtd+'</td><td class="r mono">'+brl(x.qtd*r.precoCota)+'</td>'+
+          '<td class="r mono">'+x.qtd+'</td><td class="r mono">'+brl(x.qtd*(r.precoCota||0))+'</td>'+
           '<td>'+x.pagamento+'</td>'+
           '<td><span class="st '+(x.status==='pago'?'ok':'pend')+'">'+x.status+'</span></td>'+
           '<td class="mono">'+dbr(x.data)+'</td>';
         tb.appendChild(tr);
       });
-      $('#tAfiCotas tfoot').innerHTML = '<tr><td colspan="2">Total</td>'+
-        '<td class="r mono">'+d.linhas.reduce((s,x)=>s+x.qtd,0)+'</td>'+
-        '<td class="r mono">'+brl(d.linhas.reduce((s,x)=>s+x.qtd*r.precoCota,0))+'</td><td colspan="3"></td></tr>';
       rotular('#tAfiCotas');
     }
   }
 
+  /* as duas janelinhas dos bolos */
+  const potes = [b.vip, b.semLink].filter(x=>x.valor > 0);
+  $('#vipSec').style.display = potes.length ? 'block' : 'none';
+  const wrap = $('#bolosWrap'); wrap.innerHTML = '';
+  potes.forEach((pote,i)=>{
+    const chave = i === 0 ? 'cotaVip' : 'cotaSemLink';
+    const el = document.createElement('div');
+    el.className = 'card bolo';
+    el.innerHTML =
+      '<div class="vip-head"><div>'+
+        '<div class="vip-k">'+pote.nome+'</div>'+
+        '<div class="vip-v num">'+brl(pote.valor)+'</div>'+
+        '<div class="vip-s">'+int(pote.pedidos)+' pedidos · '+pote.nota+'</div>'+
+      '</div></div><div class="vip-list">'+
+      dados.map(x=>
+        '<div class="vip-row">'+
+          '<div class="vip-nome">'+x.nome+'</div>'+
+          '<div class="vip-bar"><span style="width:'+(x.part*100).toFixed(2)+'%"></span></div>'+
+          '<div class="vip-pct mono">'+pct1(x.part)+'</div>'+
+          '<div class="vip-val mono">'+brl(x[chave])+'</div>'+
+        '</div>').join('') +
+      '</div>';
+    wrap.appendChild(el);
+  });
+
   /* tabela geral */
   const tb2 = $('#tAfi tbody'); tb2.innerHTML='';
-  if(!dados.length) tb2.innerHTML = '<tr class="empty-row"><td colspan="8">Nenhum afiliado cadastrado.</td></tr>';
+  if(!dados.length) tb2.innerHTML = '<tr class="empty-row"><td colspan="7">Nenhum afiliado cadastrado.</td></tr>';
   dados.forEach(x=>{
-    const st = x.direta ? '<span class="st off">sem comissão</span>'
-      : (x.pago ? '<span class="st ok">comissão paga</span>' : '<span class="st pend">a pagar</span>');
     const tr = document.createElement('tr');
     tr.innerHTML = '<td><strong>'+x.nome+'</strong></td>'+
       '<td class="r mono">'+brl(x.faturamento)+'</td>'+
       '<td class="r mono">'+int(x.vendas)+'</td>'+
-      '<td class="r mono">'+brl(x.ticket)+'</td>'+
-      '<td class="r mono">'+brl(x.pendValor)+'</td>'+
-      '<td class="r mono">'+(x.direta?'—':x.pct+'%')+'</td>'+
-      '<td class="r mono">'+(x.direta?'—':brl(x.com))+'</td><td>'+st+'</td>';
+      '<td class="r mono">'+pct1(x.part)+'</td>'+
+      '<td class="r mono vip">'+brl(x.cotaVip)+'</td>'+
+      '<td class="r mono vip">'+brl(x.cotaSemLink)+'</td>'+
+      '<td class="r mono">'+brl(x.total)+'</td>';
     tb2.appendChild(tr);
   });
   const T = k => dados.reduce((s,x)=>s+x[k],0);
-  const tv = T('vendas');
   $('#tAfi tfoot').innerHTML = '<tr><td>Total</td>'+
     '<td class="r mono">'+brl(T('faturamento'))+'</td>'+
-    '<td class="r mono">'+int(tv)+'</td>'+
-    '<td class="r mono">'+brl(tv ? T('faturamento')/tv : 0)+'</td>'+
-    '<td class="r mono">'+brl(T('pendValor'))+'</td>'+
-    '<td></td><td class="r mono">'+brl(T('com'))+'</td><td></td></tr>';
+    '<td class="r mono">'+int(T('vendas'))+'</td>'+
+    '<td class="r mono">'+pct1(T('part'))+'</td>'+
+    '<td class="r mono vip">'+brl(T('cotaVip'))+'</td>'+
+    '<td class="r mono vip">'+brl(T('cotaSemLink'))+'</td>'+
+    '<td class="r mono">'+brl(T('total'))+'</td></tr>';
   rotular('#tAfi');
 }
 
@@ -1261,7 +1395,13 @@ function render(){
   renderGeral(c); renderStats(c); renderCotas(c); renderAfiliados(c); renderDespesas(c); renderVencedores();
   $('#fAtual').textContent = 'Atualizado em ' + DADOS.atualizadoEm;
   $('#fRifas').textContent = DADOS.rifas.length + (DADOS.rifas.length===1 ? ' rifa cadastrada' : ' rifas cadastradas');
-  $('#notice').style.display = DADOS.exemplo ? 'flex' : 'none';
+  const temAviso = DADOS.exemplo || !!DADOS.aviso;
+  $('#notice').style.display = temAviso ? 'flex' : 'none';
+  if(temAviso){
+    $('#noticeTag').textContent = DADOS.exemplo ? 'Dados de exemplo.' : 'Falta pouco.';
+    $('#noticeTxt').textContent = DADOS.aviso ||
+      'Os lançamentos são fictícios, só pra ver o painel funcionando.';
+  }
 }
 render();
 </script>
