@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Grana com IA</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: painel direto ao ponto. Abertura curta, 3 apostas, lista filtrável, e blocos de YouTube, apps, ferramentas e plano. Detalhe só na ficha. */
+:root{
+  --bg:#f5f6f9; --card:#ffffff; --ink:#111421; --ink-2:#434a5e; --muted:#6a7186; --line:#e3e6ee; --line-2:#cdd2de;
+  --accent:#4b3fd1; --accent-ink:#ffffff; --accent-wash:#ecebfc;
+  --hot:#c2410c; --hot-wash:#fdeee6; --ok:#0f7a3d; --ok-wash:#e5f4ea; --bad:#b42323; --bad-wash:#fbeaea;
+  --s1:#2a78d6; --s1-soft:#86b6ef; --s2:#eb6834; --s3:#1baf7a; --grid:#e6e8ef; --axis:#c3c8d4; --deemph:#b7bdcb;
+  --surface:#ffffff; --scrim:rgba(17,20,33,.5); --shadow:0 1px 2px rgba(17,20,33,.05),0 8px 24px rgba(17,20,33,.06);
+  --f-d:"Space Grotesk","Arial Narrow",system-ui,sans-serif; --f-b:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0d0f17; --card:#161925; --ink:#eceef5; --ink-2:#b6bccd; --muted:#8b92a6; --line:#252a3a; --line-2:#343a4e;
+  --accent:#9d94ff; --accent-ink:#0d0f17; --accent-wash:#211f42; --hot:#ff9a66; --hot-wash:#33200f; --ok:#4cc982; --ok-wash:#11291c; --bad:#ff8a8a; --bad-wash:#331515;
+  --s1:#3987e5; --s1-soft:#1c5cab; --s2:#d95926; --s3:#199e70; --grid:#222738; --axis:#343a4e; --deemph:#4a5164;
+  --surface:#161925; --scrim:rgba(0,0,0,.6); --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0d0f17; --card:#161925; --ink:#eceef5; --ink-2:#b6bccd; --muted:#8b92a6; --line:#252a3a; --line-2:#343a4e;
+  --accent:#9d94ff; --accent-ink:#0d0f17; --accent-wash:#211f42; --hot:#ff9a66; --hot-wash:#33200f; --ok:#4cc982; --ok-wash:#11291c; --bad:#ff8a8a; --bad-wash:#331515;
+  --s1:#3987e5; --s1-soft:#1c5cab; --s2:#d95926; --s3:#199e70; --grid:#222738; --axis:#343a4e; --deemph:#4a5164;
+  --surface:#161925; --scrim:rgba(0,0,0,.6); --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{background:var(--bg);color:var(--ink);font:400 15.5px/1.55 var(--f-b);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+a{color:var(--accent);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--f-d);margin:0;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+.k{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;gap:12px;align-items:center}
+.brand{font-family:var(--f-d);font-weight:700;white-space:nowrap}
+.brand b{color:var(--accent)}
+.bar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-block:9px;min-width:0;flex:1}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:.86rem;font-weight:500;padding:5px 10px;border-radius:999px}
+.bar nav a:hover{background:var(--accent-wash)}
+.bar nav a[aria-current="true"]{background:var(--ink);color:var(--bg)}
+
+.hero{padding-block:clamp(32px,6vw,64px) 8px}
+.hero h1{font-size:clamp(2.8rem,9vw,5.6rem);font-weight:700;letter-spacing:-.045em;line-height:.92}
+.hero h1 b{color:var(--accent)}
+.hero p{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--ink-2);margin-top:14px;max-width:40em}
+.chips3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.chip3{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.chip3 b{display:block;font-family:var(--f-d);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.chip3 span{font-size:.84rem;color:var(--ink-2);line-height:1.35;display:block;margin-top:2px}
+@media (max-width:640px){.chips3{grid-template-columns:minmax(0,1fr)}}
+
+.sec{padding-block:clamp(36px,6vw,64px)}
+.sec+.sec{border-top:1px solid var(--line)}
+.head{display:grid;gap:6px;margin-bottom:20px;max-width:44rem}
+.head h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:700}
+.head p{color:var(--ink-2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2.2vw,22px);min-width:0}
+.card h3{font-size:1.1rem;font-weight:600}
+.sub{color:var(--muted);font-size:.86rem;margin-top:3px}
+.g2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.g3{display:grid;gap:14px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.g3{grid-template-columns:minmax(0,1fr)}}
+.stack{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+
+/* top 3 */
+.bet{display:grid;gap:10px;align-content:start;position:relative}
+.bet .n{position:absolute;top:14px;right:16px;font-family:var(--f-d);font-weight:700;font-size:2.6rem;line-height:1;color:var(--line-2)}
+.bet h3{font-size:1.3rem;padding-right:44px}
+.bet .big{font-family:var(--f-d);font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.bet .big small{font-size:.9rem;font-weight:500;color:var(--muted);letter-spacing:0}
+.facts{display:flex;flex-wrap:wrap;gap:6px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.pill.ok{background:var(--ok-wash);border-color:transparent;color:var(--ok)}
+.pill.hot{background:var(--hot-wash);border-color:transparent;color:var(--hot)}
+.pill.bad{background:var(--bad-wash);border-color:transparent;color:var(--bad)}
+.ia{font-size:.92rem;color:var(--ink-2)}
+.ia b{color:var(--ink)}
+.go{justify-self:start;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.go:hover{background:var(--accent);color:var(--accent-ink)}
+.bet.first{border-color:var(--accent);box-shadow:var(--shadow)}
+
+/* lista */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tab{border:1px solid var(--line-2);background:var(--card);border-radius:999px;padding:6px 12px;font-size:.88rem;cursor:pointer;color:var(--ink-2)}
+.tab[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+.tab .c{opacity:.6;margin-left:4px}
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:10px;font-size:.88rem;color:var(--ink-2)}
+.tools label{display:inline-flex;gap:7px;align-items:center;cursor:pointer}
+.tools input{width:17px;height:17px;accent-color:var(--accent)}
+.list{display:grid;gap:6px}
+.row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 110px 120px;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer}
+.row:hover{border-color:var(--accent)}
+.row .nm{font-weight:600;line-height:1.3}
+.row .nm small{display:block;font-weight:400;color:var(--muted);font-size:.8rem;margin-top:2px}
+.row .t{font-size:.84rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row.cut{opacity:.62}
+.lhead{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 110px 120px;gap:14px;padding:0 15px 4px;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.rg{display:grid;gap:3px}
+.rg .tr{position:relative;height:10px;border-radius:5px;background:linear-gradient(var(--grid),var(--grid)) center/100% 2px no-repeat}
+.rg .sp{position:absolute;top:3px;height:4px;border-radius:2px;background:var(--s1-soft)}
+.rg .d{position:absolute;top:0;width:10px;height:10px;margin-left:-5px;border-radius:50%;border:2px solid var(--card)}
+.rg .d.a{background:var(--s1-soft)}.rg .d.b{background:var(--s1)}
+.rg .v{font-size:.82rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rg .v b{color:var(--ink)}
+@media (max-width:720px){.lhead{display:none}.row{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px}.row .rg{grid-column:1/-1}}
+
+/* gráficos */
+.viz{position:relative;min-width:0}
+.viz svg{display:block;width:100%;height:auto;overflow:visible}
+.viz text{font-family:var(--f-b);fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.viz .lbl{fill:var(--ink-2);font-size:11.5px;font-weight:500}
+.viz .lbl-strong{fill:var(--ink);font-weight:600;font-size:12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.84rem;color:var(--ink-2);align-items:center}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.legend i.dot{width:10px;height:10px;border-radius:50%}
+.cap{font-size:.78rem;color:var(--muted);margin-top:8px}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:10px;padding:9px 11px;font-size:.82rem;line-height:1.35;max-width:min(300px,calc(100vw - 24px));box-shadow:var(--shadow)}
+.tip b{display:block;margin-bottom:3px}
+.tip .r{display:flex;justify-content:space-between;gap:14px}
+.tip .r span:last-child{font-weight:600;font-variant-numeric:tabular-nums}
+.tip .key{display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+/* yt */
+.rules{display:grid;gap:8px;list-style:none;padding:0;margin:10px 0 0}
+.rules li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;font-size:.93rem;color:var(--ink-2);overflow-wrap:anywhere}
+.rules li::before{font-weight:700}
+.rules.yes li::before{content:"✓";color:var(--ok)}
+.rules.no li::before{content:"✕";color:var(--bad)}
+.concepts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.concept{display:grid;gap:8px;align-content:start}
+.concept h4{font-size:1.05rem}
+.concept p{font-size:.9rem;color:var(--ink-2);overflow-wrap:anywhere}
+.flow{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.step{padding:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0;display:grid;gap:4px;align-content:start}
+.step .k{color:var(--accent)}
+.step b{font-size:.98rem}
+.step span{font-size:.85rem;color:var(--ink-2);overflow-wrap:anywhere}
+
+/* tiles */
+.tiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tile{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);min-width:0}
+.tile b{display:block;font-family:var(--f-d);font-weight:700;font-size:1.55rem;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
+.tile span{display:block;font-size:.82rem;color:var(--ink-2);line-height:1.35;margin-top:3px}
+.tile a{font-size:.74rem;color:var(--muted)}
+.tile b.neg{color:var(--bad)}
+
+/* sim */
+.sim{display:grid;gap:14px;grid-template-columns:minmax(0,4fr) minmax(0,7fr);align-items:start}
+@media (max-width:900px){.sim{grid-template-columns:minmax(0,1fr)}}
+.ctrls{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font-weight:600;font-size:.9rem;display:flex;justify-content:space-between;gap:10px}
+.field output{font-family:var(--f-d);font-weight:700}
+input[type=range]{width:100%;accent-color:var(--accent);height:26px;margin:0}
+.fine{font-size:.78rem;color:var(--muted)}
+
+/* tabela */
+.scroll-x{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.88rem}
+.tbl th{font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.tbl td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+
+/* plano */
+.weeks{display:grid;gap:10px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.weeks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.weeks{grid-template-columns:minmax(0,1fr)}}
+.week{display:grid;gap:8px;align-content:start}
+.week h3{font-size:1.05rem}
+.week ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:.9rem;color:var(--ink-2)}
+.week .goal{font-size:.82rem;font-weight:600;color:var(--accent)}
+.warn{border:1px solid color-mix(in srgb,var(--bad) 35%,var(--line));background:var(--bad-wash);border-radius:14px;padding:14px 16px;font-size:.93rem}
+.warn b{color:var(--bad)}
+.note{border:1px solid var(--line);background:var(--accent-wash);border-radius:14px;padding:14px 16px;font-size:.93rem}
+
+/* ficha */
+dialog.sheet{border:0;padding:0;background:var(--bg);color:var(--ink);border-radius:18px;width:min(760px,calc(100vw - 24px));max-height:min(92vh,960px);box-shadow:var(--shadow);overflow:hidden}
+dialog.sheet::backdrop{background:var(--scrim)}
+.sh-in{display:grid;grid-template-rows:auto minmax(0,1fr);max-height:min(92vh,960px)}
+.sh-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:16px 18px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.sh-head h3{font-size:clamp(1.25rem,3vw,1.6rem)}
+.sh-head p{color:var(--ink-2);margin-top:4px;font-size:.94rem}
+.x{border:1px solid var(--line-2);background:var(--card);border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:1rem}
+.sh-body{overflow-y:auto;padding:16px 18px 26px;display:grid;gap:18px;grid-template-columns:minmax(0,1fr);overscroll-behavior:contain}
+@media (max-width:640px){dialog.sheet{width:100vw;max-width:100vw;max-height:94vh;margin:auto 0 0;border-radius:18px 18px 0 0}.sh-in{max-height:94vh}}
+.blk{display:grid;gap:6px}
+.blk h4{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--f-b)}
+.blk p,.blk li{font-size:.94rem;color:var(--ink-2);overflow-wrap:anywhere}
+.blk ul{margin:0;padding-left:18px;display:grid;gap:5px}
+.todo{list-style:none;padding:0!important}
+.todo label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;cursor:pointer}
+.todo input{width:17px;height:17px;margin-top:3px;accent-color:var(--accent)}
+.todo input:checked+span{color:var(--muted);text-decoration:line-through}
+details.more summary{cursor:pointer;font-weight:600;font-size:.9rem;color:var(--accent)}
+details.more[open] summary{margin-bottom:10px}
+.srcs{list-style:none;padding:0;margin:0;display:grid;gap:4px;font-size:.84rem}
+.srcs a{overflow-wrap:anywhere}
+footer{padding-block:28px 48px;color:var(--muted);font-size:.84rem}
+</style>
+
+<div class="bar"><div class="wrap">
+  <span class="brand">Grana com <b>IA</b></span>
+  <nav id="nav" aria-label="Seções">
+    <a href="#top3">Top 3</a><a href="#ideias">Todas as ideias</a><a href="#youtube">YouTube</a><a href="#apps">Apps</a><a href="#ferramentas">Ferramentas</a><a href="#plano">Plano 30 dias</a><a href="#fontes">Fontes</a>
+  </nav>
+</div></div>
+
+<header class="wrap hero">
+  <span class="k">Pesquisa de mercado · EUA · novembro de 2026</span>
+  <h1 style="margin-top:10px">Grana com <b>IA</b></h1>
+  <p>O que dá dinheiro usando IA para trabalhar menos: serviço, app e YouTube. Pensado para quem já tem emprego e tem de 5 a 10 horas por semana.</p>
+  <div class="chips3">
+    <div class="chip3"><b>33</b><span>ideias com IA, tiradas de 132 caminhos pesquisados e checados</span></div>
+    <div class="chip3"><b>$72/mês</b><span>é o que o app de assinatura mediano fatura 1 ano depois de lançado</span></div>
+    <div class="chip3"><b>17–20%</b><span>das pequenas empresas dos EUA usam IA de verdade. É aí que está o cliente.</span></div>
+  </div>
+</header>
+
+<main>
+<section class="sec" id="top3"><div class="wrap">
+  <div class="head"><span class="k">Top 3</span><h2>Se for pra escolher, é isso</h2><p>Uma aposta para cada objetivo. Dá para começar pela primeira e tocar a segunda em paralelo.</p></div>
+  <div class="g3">
+    <div class="card bet first"><span class="n">1</span><span class="k">Dinheiro mais rápido</span><h3>Atendente de IA para negócios brasileiros</h3>
+      <div class="big">$600–$3k<small> /mês no mês 12</small></div>
+      <div class="facts"><span class="pill ok">1º dólar em 2–8 semanas</span><span class="pill">10 h/sem</span><span class="pill">começa com $50–800</span></div>
+      <p class="ia"><b>A IA faz:</b> responde clientes no WhatsApp e no telefone em português e inglês, orça e agenda. <b>Ele faz:</b> monta, vende e cobra $197 a $397 por mês de cada negócio.</p>
+      <p class="ia">Por que funciona: só 17% a 20% das pequenas empresas usam IA de fato, e as agências americanas não atendem em português.</p>
+      <button class="go" type="button" data-open="ai_agency--atendente-bilingue-pt-es-en-automacao-de-whatsap">Ver ficha</button></div>
+    <div class="card bet"><span class="n">2</span><span class="k">Maior teto, mais lento</span><h3>Canal no YouTube feito com IA + afiliados</h3>
+      <div class="big">$0–150<small> típico</small> · $500–2k<small> bom</small></div>
+      <div class="facts"><span class="pill hot">monetiza em 10–18 meses</span><span class="pill">6–8 h/sem</span><span class="pill">$40–90/mês de ferramenta</span></div>
+      <p class="ia"><b>A IA faz:</b> pesquisa, roteiro, voz, edição e thumbnail. Um vídeo de 10 minutos sai em 5 a 8 horas. <b>Ele faz:</b> escolhe o tema, dá a opinião e checa os fatos.</p>
+      <p class="ia">No ano 1 o dinheiro vem de afiliado de ferramenta de IA, não do anúncio do YouTube.</p>
+      <a class="go" href="#youtube" style="text-decoration:none">Ver o plano de YouTube</a></div>
+    <div class="card bet"><span class="n">3</span><span class="k">Loteria barata</span><h3>App de nicho com IA</h3>
+      <div class="big">$10–$500<small> /mês no mês 12</small></div>
+      <div class="facts"><span class="pill">1º dólar em 3–8 semanas</span><span class="pill">6 h/sem</span><span class="pill">começa com $125</span></div>
+      <p class="ia"><b>A IA faz:</b> escreve o app inteiro e roda dentro dele (ex.: prova de cidadania americana em português, com entrevista simulada por voz). <b>Ele faz:</b> escolhe o nicho e divulga.</p>
+      <p class="ia">Custa pouco tentar, mas só 17% dos apps chegam a $1 mil por mês em 2 anos.</p>
+      <button class="go" type="button" data-open="mobile_apps--preparatorio-para-a-cidadania-americana-teste-ci">Ver ficha</button></div>
+  </div>
+</div></section>
+
+<section class="sec" id="ideias"><div class="wrap">
+  <div class="head"><span class="k">Todas as ideias</span><h2>Todas as ideias com IA, por renda</h2><p>Renda no mês 12 para quem faz com constância: a bolinha clara é o típico, a escura é o cenário bom. Toque numa linha para abrir a ficha.</p></div>
+  <div class="tabs" id="tabs" role="group" aria-label="Tipo"></div>
+  <div class="tools">
+    <label><input type="checkbox" id="f-cut">Mostrar as que o revisor cético cortou</label>
+    <label><input type="checkbox" id="f-time">Só até 10 h por semana</label>
+    <label><input type="checkbox" id="f-nosell">Sem vender todo dia</label>
+  </div>
+  <div class="lhead"><span>Ideia</span><span>Renda no mês 12</span><span>1º dólar</span><span>h/semana</span></div>
+  <div class="list" id="list"></div>
+</div></section>
+
+<section class="sec" id="youtube"><div class="wrap">
+  <div class="head"><span class="k">YouTube com IA</span><h2>YouTube: a IA produz, ele dá a cara (ou a voz)</h2><p>O YouTube não proíbe IA. Ele corta a monetização de canal que parece fábrica. E a partir de 1º de fevereiro de 2027, canal novo precisa do dobro de horas assistidas para monetizar.</p></div>
+  <div class="stack">
+    <div class="g2">
+      <div class="card"><h3>Pode</h3><ul class="rules yes">
+        <li>Roteiro, pesquisa, voz, edição e thumbnail feitos com IA.</li>
+        <li>Voz e avatar de IA, marcando o selo de "conteúdo alterado" quando parecer real. O selo não derruba alcance nem monetização.</li>
+        <li>Dublagem automática do YouTube para português e espanhol, de graça.</li>
+        <li>Usar o mesmo modelo de abertura e fechamento, desde que o conteúdo mude.</li>
+      </ul></div>
+      <div class="card"><h3>Não pode (perde a monetização do canal inteiro)</h3><ul class="rules no">
+        <li>Slideshow, texto rolando ou vídeos que parecem intercambiáveis ("conteúdo inautêntico").</li>
+        <li>Persona de IA posando de médico, advogado ou especialista em finanças.</li>
+        <li>Compilado de vídeos dos outros sem comentário próprio.</li>
+        <li>Clipes de IA costurados sem história, ou imagens enganosas.</li>
+      </ul></div>
+    </div>
+    <div class="card"><h3>Quanto cada tema paga por mil views (vídeo longo, público dos EUA)</h3>
+      <p class="sub">Faixa: tabelas de mercado, que costumam vir acima do real. Losango: mediana medida em 300 canais. Laranja: temas que engajam muito.</p>
+      <div class="viz" data-ranges="themes" style="margin-top:10px"></div>
+      <p class="cap">Fontes: <a href="https://air.io/en/air-data-findings/which-youtube-niche-makes-the-most-money-in-2026-ranked-by-real-rpm-and-cpm" target="_blank" rel="noopener noreferrer">AIR Media-Tech</a> e <a href="https://www.1of10.com/blog/youtube-cpm-rpm-by-niche/" target="_blank" rel="noopener noreferrer">1of10</a>. Canal só em espanhol paga de 3 a 4 vezes menos que em inglês, e em português ~$1,40 por mil.</p></div>
+    <div><h3 style="font-size:1.2rem;margin-bottom:10px">4 canais que dá para tocar com 5 a 10 horas por semana</h3>
+      <div class="concepts"><div class="card concept"><h4>AI Tools, Tested</h4><p>Tutorial de 8 a 12 minutos testando ferramentas de IA, em inglês. Tela gravada, voz dele ou clonada.</p><div class="facts"><span class="pill">6–8 h/sem</span><span class="pill">típico $0–150/mês</span><span class="pill ok">bom $500–2k/mês</span></div><p class="sub">Afiliado das próprias ferramentas (ElevenLabs paga 22% por 12 meses).</p></div><div class="card concept"><h4>Explained Simply</h4><p>Ciência e tecnologia explicada em 10 a 15 minutos, em inglês, com dublagem automática para PT e ES.</p><div class="facts"><span class="pill">8–10 h/sem</span><span class="pill">típico $0–300/mês</span><span class="pill ok">bom $800–3k/mês</span></div><p class="sub">O tema que mais paga por view: mediana de $10,22 por mil.</p></div><div class="card concept"><h4>AI News Weekly</h4><p>Resumo semanal das novidades de IA com a opinião dele, mais 3 Shorts.</p><div class="facts"><span class="pill">5–6 h/sem</span><span class="pill">típico $0–150/mês</span><span class="pill ok">bom $300–1,5k/mês</span></div><p class="sub">O menor esforço; precisa de opinião própria, não só resumo.</p></div><div class="card concept"><h4>Ferramentas de IA em português</h4><p>O mesmo do primeiro, para brasileiros. Menos concorrência, paga menos por view.</p><div class="facts"><span class="pill">6 h/sem</span><span class="pill">típico $0–100/mês</span><span class="pill ok">bom $300–1k/mês</span></div><p class="sub">Afiliado e, depois, curso ou consultoria.</p></div></div>
+      <p class="cap">Renda no mês 12 é estimativa a partir das faixas da pesquisa; não existe estudo público de quantos canais novos monetizam.</p></div>
+    <div><h3 style="font-size:1.2rem;margin-bottom:10px">Como a IA faz um vídeo de 10 minutos em 5 a 8 horas</h3>
+      <div class="flow">
+        <div class="step"><span class="k">1 · Domingo, 2 h</span><b>Tema e roteiro</b><span>vidIQ para achar o tema, Claude ou ChatGPT para pesquisa e roteiro. Ele checa os fatos.</span></div>
+        <div class="step"><span class="k">2 · Segunda, 1 h</span><b>Voz e título</b><span>ElevenLabs ($6–22) ou a própria voz limpa no Descript. 2 opções de thumbnail.</span></div>
+        <div class="step"><span class="k">3 · Terça e quarta, 4 h</span><b>Edição</b><span>Descript ou CapCut, imagens de banco e cenas de IA (Kling, Veo), legendas.</span></div>
+        <div class="step"><span class="k">4 · Quinta, 1 h</span><b>Publicar</b><span>Selo de IA se for realista, links de afiliado, 3 Shorts cortados do vídeo.</span></div>
+        <div class="step"><span class="k">5 · Sábado, 30 min</span><b>Ajustar</b><span>Ver retenção e cliques, responder comentários.</span></div>
+      </div></div>
+    <div class="card"><h3>Simulador: canal no YouTube em 12 meses</h3><p class="sub">Escolha um cenário e mexa nos números.</p><div data-sim="yt" style="margin-top:12px"></div></div>
+    <div class="g2">
+      <div class="card"><h3>Afiliados de ferramentas de IA</h3><table class="tbl" style="margin-top:8px"><thead><tr><th>Programa</th><th>Comissão</th></tr></thead><tbody>
+        <tr><td><a href="https://elevenlabs.io/affiliates" target="_blank" rel="noopener noreferrer">ElevenLabs</a></td><td>22% por 12 meses</td></tr>
+        <tr><td>Synthesia</td><td>20–30% recorrente</td></tr>
+        <tr><td><a href="https://www.heygen.com/affiliate-program" target="_blank" rel="noopener noreferrer">HeyGen</a></td><td>recorrente por 6 meses</td></tr>
+        <tr><td><a href="https://descript.com/affiliate-terms" target="_blank" rel="noopener noreferrer">Descript</a></td><td>~15% no 1º ano</td></tr>
+        <tr><td>InVideo</td><td>até 50% no mensal</td></tr>
+        <tr><td>vidIQ</td><td>15–25% recorrente</td></tr></tbody></table>
+        <p class="cap">Taxas sem link vêm de <a href="https://www.aistudios.com/best/best-ai-video-affiliate-programs-in-2026-compared" target="_blank" rel="noopener noreferrer">comparativo de terceiros</a>; confirme na página oficial.</p></div>
+      <div class="card"><h3>Os 3 erros que matam o canal</h3><ul class="rules no">
+        <li><span><b>Fazenda de IA:</b> voz genérica, mesmo molde, tema de massa. Desmonetiza tudo.</span></li>
+        <li><span><b>Contar com o anúncio no ano 1:</b> com 8.000 horas exigidas e Shorts pagando centavos, o afiliado tem que entrar desde o vídeo 1.</span></li>
+        <li><span><b>Trocar de tema todo mês:</b> um nicho só, em inglês, com dublagem automática para PT e ES.</span></li>
+      </ul>
+      <p class="cap">Shorts pagam cerca de $0,03 a $0,07 por mil views: servem de vitrine, não de renda.</p></div>
+    </div>
+  </div>
+</div></section>
+<section class="sec" id="apps"><div class="wrap">
+  <div class="head"><span class="k">Apps com IA</span><h2>Apps: fazer ficou fácil, vender é o difícil</h2><p>Com IA dá para lançar um app em semanas por menos de $150. Por isso a App Store recebeu 560 mil apps novos só no primeiro semestre de 2026.</p></div>
+  <div class="stack">
+    <div class="tiles">
+      <div class="tile"><b>$72/mês</b><span>receita mediana de um app de assinatura 1 ano depois de lançado</span><a href="https://www.revenuecat.com/state-of-subscription-apps-2026/" target="_blank" rel="noopener noreferrer">RevenueCat</a></div>
+      <div class="tile"><b>17%</b><span>chegam a $1 mil/mês em 2 anos; 4,6% chegam a $10 mil</span><a href="https://www.revenuecat.com/state-of-subscription-apps-2026/" target="_blank" rel="noopener noreferrer">RevenueCat</a></div>
+      <div class="tile"><b>10,7% × 2,1%</b><span>conversão com paywall logo no início × app grátis com upgrade</span><a href="https://www.revenuecat.com/blog/growth/subscription-app-trends-benchmarks-2026" target="_blank" rel="noopener noreferrer">RevenueCat</a></div>
+      <div class="tile"><b>21% × 31%</b><span>apps de IA seguram menos assinantes em 1 ano, mas ganham 41% mais por pagante</span><a href="https://techcrunch.com/2026/03/10/ai-powered-apps-struggle-with-long-term-retention-new-report-shows" target="_blank" rel="noopener noreferrer">TechCrunch</a></div>
+    </div>
+    <div class="note"><b>O que funciona:</b> nicho bem específico onde ele tem vantagem (português, imigrante, fé), paywall logo depois do cadastro e divulgação por vídeo curto ou criadores pequenos pagos por vídeo. <b>O que não funciona:</b> chatbot genérico, clone de app viral e pagar anúncio antes de saber que o app converte.</div>
+    <div class="card"><h3>Simulador: app de assinatura em 12 meses</h3><p class="sub">Compare o cenário pagando anúncio com o orgânico.</p><div data-sim="app" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Simulador: serviço de IA com mensalidade</h3><p class="sub">Para a aposta nº 1.</p><div data-sim="svc" style="margin-top:12px"></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="ferramentas"><div class="wrap">
+  <div class="head"><span class="k">Ferramentas</span><h2>O kit de IA e quanto custa</h2><p>Preços de novembro de 2026. Dá para começar com $20 a $60 por mês.</p></div>
+  <div class="card"><div class="scroll-x"><table class="tbl" id="stack"></table></div><p class="cap">Fontes nos links de cada linha. Planos mudam rápido: confira antes de assinar anual.</p></div>
+</div></section>
+
+<section class="sec" id="plano"><div class="wrap">
+  <div class="head"><span class="k">Plano 30 dias</span><h2>O primeiro mês, semana a semana</h2><p>Para 8 a 10 horas por semana e menos de $100 por mês de ferramenta.</p></div>
+  <div class="weeks">
+    <div class="card week"><span class="k">Semana 1</span><h3>Montar o kit</h3><ul><li>Assinar Claude ou ChatGPT ($20).</li><li>Escolher o nicho: negócios brasileiros da região e um tema de canal.</li><li>Confirmar se o visto permite faturar.</li></ul><span class="goal">Meta: nicho e tema decididos</span></div>
+    <div class="card week"><span class="k">Semana 2</span><h3>Demo e vídeo 1</h3><ul><li>Montar o atendente de IA para um negócio de exemplo.</li><li>Gravar e publicar o 1º vídeo longo + 3 Shorts.</li></ul><span class="goal">Meta: demo pronta e 1º vídeo no ar</span></div>
+    <div class="card week"><span class="k">Semana 3</span><h3>Oferecer</h3><ul><li>Mostrar a demo para 20 donos de negócio (grupos de WhatsApp e Facebook).</li><li>2 primeiros clientes com instalação grátis em troca de depoimento.</li><li>Vídeo 2 no ar.</li></ul><span class="goal">Meta: 2 clientes testando</span></div>
+    <div class="card week"><span class="k">Semana 4</span><h3>Cobrar</h3><ul><li>Cobrar mensalidade do 3º cliente em diante ($197–397).</li><li>Vídeo 3 mostrando como a IA atende um cliente (com autorização).</li><li>Separar 25% a 30% do que entra para imposto.</li></ul><span class="goal">Meta: 1º cliente pagando</span></div>
+  </div>
+</div></section>
+
+<section class="sec" id="fontes"><div class="wrap">
+  <div class="head"><span class="k">Fontes</span><h2>De onde vêm os números</h2><p id="method"></p></div>
+  <div class="stack">
+    <details class="more card"><summary id="checks-sum">Números que a checagem corrigiu</summary><ul class="srcs" id="checks"></ul></details>
+    <details class="more card"><summary id="src-sum">Todas as fontes</summary><ul class="srcs" id="srcs"></ul></details>
+  </div>
+</div></section>
+</main>
+<footer class="wrap"><p>Informação geral para decidir por onde começar, não é conselho jurídico, tributário ou de investimento. Antes de faturar, confirme com um advogado de imigração se o status migratório permite trabalhar no próprio negócio.</p></footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sh-t"><div class="sh-in">
+  <div class="sh-head"><div><span class="k" id="sh-k"></span><h3 id="sh-t"></h3><p id="sh-p"></p></div><button class="x" id="sh-x" aria-label="Fechar">✕</button></div>
+  <div class="sh-body" id="sh-b"></div>
+</div></dialog>
+<div class="tip" id="tip" hidden></div>
+<script type="application/json" id="dataset"></script>
+<script>
+(async function(){
+'use strict';
+const inline = document.getElementById('dataset').textContent.trim();
+let D;
+try { D = inline ? JSON.parse(inline) : await (await fetch('ia-dados.json')).json(); }
+catch (e) { document.querySelector('main').prepend(Object.assign(document.createElement('p'), {className: 'wrap', textContent: 'Não foi possível carregar os dados. Recarregue a página.'})); return; }
+const $ = (q, r) => (r || document).querySelector(q), $$ = (q, r) => Array.from((r || document).querySelectorAll(q));
+const NS = 'http://www.w3.org/2000/svg';
+function mk(ns, tag, a, kids){ const e = ns ? document.createElementNS(ns, tag) : document.createElement(tag);
+  if (a) for (const k in a){ const v = a[k]; if (v == null || v === false) continue; if (k === 'class') e.setAttribute('class', v); else if (k === 'text') e.textContent = v; else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v); else e.setAttribute(k, v === true ? '' : v); }
+  for (const c of kids.flat(3)){ if (c == null || c === false) continue; e.append(c.nodeType ? c : document.createTextNode(String(c))); } return e; }
+const h = (t, a, ...k) => mk(null, t, a, k), s = (t, a, ...k) => mk(NS, t, a, k);
+const store = { get(k, d){ try { const v = localStorage.getItem('gia:' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v){ try { localStorage.setItem('gia:' + k, JSON.stringify(v)); } catch (e) {} } };
+const okU = u => typeof u === 'string' && /^https?:\/\//i.test(u);
+const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
+const link = (t, u) => okU(u) ? h('a', {href: u, target: '_blank', rel: 'noopener noreferrer', text: t}) : h('span', {text: t});
+function usd(v){ const a = Math.abs(v || 0), g = v < 0 ? '−' : ''; if (a >= 1e6) return g + '$' + (a / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'; if (a >= 1e4) return g + '$' + Math.round(a / 1e3) + 'k'; if (a >= 1e3) return g + '$' + (a / 1e3).toFixed(1).replace(/\.0$/, '').replace('.', ',') + 'k'; return g + '$' + Math.round(a); }
+const usdF = v => (v < 0 ? '−' : '') + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+function wks(lo, hi){ const f = w => w < 1 ? 'dias' : w < 9 ? Math.round(w) + ' sem' : Math.round(w / 4.345) + ' meses'; const a = f(lo), b = f(hi); if (a === b) return a; const [x, ux] = a.split(' '), [y, uy] = b.split(' '); return ux === uy ? x + '–' + y + ' ' + ux : a + '–' + b; }
+const O = Object.fromEntries(D.opps.map(o => [o.id, o]));
+
+/* tooltip */
+const tip = $('#tip');
+function showTip(x, y, nodes){ tip.replaceChildren(...nodes); tip.hidden = false; const r = tip.getBoundingClientRect(); let l = x + 14, t = y + 14; if (l + r.width > innerWidth - 8) l = Math.max(8, x - r.width - 14); if (t + r.height > innerHeight - 8) t = Math.max(8, y - r.height - 14); tip.style.left = l + 'px'; tip.style.top = t + 'px'; }
+const hideTip = () => { tip.hidden = true; };
+addEventListener('scroll', hideTip, {passive: true});
+const tr = (a, b, c) => h('div', {class: 'r'}, h('span', null, c ? h('i', {class: 'key', style: 'background:' + c}) : null, a), h('span', {text: b}));
+
+/* lista */
+const CATS = [['all', 'Todas'], ['servico', 'Serviço com IA'], ['app', 'App e software'], ['video', 'YouTube e vídeo']];
+const view = {cat: 'all', cut: false, time: false, nosell: false};
+const LOG = v => Math.log10(1 + Math.max(0, v)) / Math.log10(1 + 10000);
+function rg(o){ const a = Math.min(100, LOG(o.typ) * 100), b = Math.min(100, LOG(o.good) * 100);
+  return h('div', {class: 'rg', role: 'img', 'aria-label': 'típico ' + usd(o.typ) + ', bom ' + usd(o.good) + ' por mês'}, h('div', {class: 'tr'}, h('i', {class: 'sp', style: 'left:' + a + '%;width:' + Math.max(0, b - a) + '%'}), h('i', {class: 'd a', style: 'left:' + a + '%'}), h('i', {class: 'd b', style: 'left:' + b + '%'})), h('span', {class: 'v'}, h('b', {text: usd(o.typ)}), ' típico · ', h('b', {text: usd(o.good)}), ' bom')); }
+function renderTabs(){ const pool = D.opps.filter(o => view.cut || o.keep !== false);
+  $('#tabs').replaceChildren(...CATS.map(([k, l]) => h('button', {class: 'tab', type: 'button', 'aria-pressed': String(view.cat === k), onclick: () => { view.cat = k; renderTabs(); renderList(); }}, l, h('span', {class: 'c', text: String(k === 'all' ? pool.length : pool.filter(o => o.cat === k).length)})))); }
+function renderList(){
+  const L = D.opps.filter(o => (view.cat === 'all' || o.cat === view.cat) && (view.cut || o.keep !== false) && (!view.time || o.hrs <= 10) && (!view.nosell || o.sell < 2)).sort((a, b) => (b.keep !== false) - (a.keep !== false) || b.typ - a.typ || b.good - a.good);
+  $('#list').replaceChildren(...(L.length ? L.map(o => h('button', {class: 'row' + (o.keep === false ? ' cut' : ''), type: 'button', onclick: () => openSheet(o.id)},
+    h('span', {class: 'nm'}, o.short, h('small', {text: o.ia})), rg(o), h('span', {class: 't', text: wks(o.wLo, o.wHi)}), h('span', {class: 't'}, (o.hrs || 0) + 'h', o.keep === false ? [' ', h('span', {class: 'pill bad', text: 'cortada'})] : o.bet ? [' ', h('span', {class: 'pill ok', text: 'aposta'})] : null)))
+    : [h('p', {class: 'sub', text: 'Nada com esses filtros.'})]));
+}
+
+/* ficha */
+const sheet = $('#sheet');
+function openSheet(id){
+  const o = O[id]; if (!o) return;
+  $('#sh-k').textContent = ({servico: 'Serviço com IA', app: 'App e software', video: 'YouTube e vídeo'})[o.cat] || '';
+  $('#sh-t').textContent = o.short; $('#sh-p').textContent = o.one;
+  const done = store.get('st:' + id, []);
+  const blk = (t, ...k) => { k = k.flat().filter(Boolean); return k.length ? h('div', {class: 'blk'}, h('h4', {text: t}), k) : null; };
+  const P = t => t ? h('p', {text: t}) : null;
+  $('#sh-b').replaceChildren(...[
+    h('div', {class: 'tiles'},
+      h('div', {class: 'tile'}, h('b', {text: usd(o.typ) + '/mês'}), h('span', {text: 'típico no mês 12'})),
+      h('div', {class: 'tile'}, h('b', {text: usd(o.good) + '/mês'}), h('span', {text: 'cenário bom (top 10–20%)'})),
+      h('div', {class: 'tile'}, h('b', {text: wks(o.wLo, o.wHi)}), h('span', {text: 'até o 1º dólar'})),
+      h('div', {class: 'tile'}, h('b', {text: usd(o.cLo) + '–' + usd(o.cHi)}), h('span', {text: 'pra começar' + (o.mo ? ' (+' + usd(o.mo) + '/mês)' : '')})),
+      h('div', {class: 'tile'}, h('b', {text: (o.hrs || 0) + 'h'}), h('span', {text: 'por semana, no mínimo'}))),
+    o.keep === false ? h('div', {class: 'warn'}, h('b', {text: 'O revisor cético cortou esta. '}), o.counter || '') : null,
+    blk('O que a IA faz', P(o.ia)),
+    blk('Como o dinheiro entra', P(o.how)),
+    blk('Primeiros 7 dias', h('ul', {class: 'todo'}, (o.steps || []).map((t, i) => { const cb = h('input', {type: 'checkbox', id: 'st-' + i}); cb.checked = !!done[i]; cb.addEventListener('change', () => { const d = store.get('st:' + id, []); d[i] = cb.checked; store.set('st:' + id, d); }); return h('li', null, h('label', null, cb, h('span', {text: t}))); }))),
+    blk('Riscos', h('ul', null, (o.risks || []).map(t => h('li', {text: t})))),
+    o.keep !== false && o.counter ? blk('O que o cético diz', P(o.counter)) : null,
+    h('details', {class: 'more'}, h('summary', {text: 'Mais detalhes: taxa de base, casos, ferramentas, fontes'}),
+      h('div', {class: 'stack'},
+        blk('Taxa de base', P(o.base)), blk('Pra quem serve', P(o.fitP || o.fit)), blk('Por que agora', P(o.why)),
+        blk('Casos documentados', (o.cases || []).length ? h('ul', null, o.cases.map(c => h('li', null, h('b', {text: c.w + ': '}), c.r + ' ', c.u ? link('(' + host(c.u) + ')', c.u) : null))) : null),
+        blk('Ferramentas', (o.stack || []).length ? P(o.stack.join(' · ')) : null),
+        blk('Fontes', (o.src || []).length ? h('ul', {class: 'srcs'}, o.src.map(x => h('li', null, link(x.t || host(x.u), x.u)))) : null)))
+  ].filter(Boolean));
+  $('#sh-b').scrollTop = 0; if (!sheet.open){ if (sheet.showModal) sheet.showModal(); else sheet.setAttribute('open', ''); }
+}
+$('#sh-x').addEventListener('click', () => sheet.close());
+sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b){ e.preventDefault(); openSheet(b.getAttribute('data-open')); } });
+
+/* gráfico de faixas */
+function rangeChart(el, R){
+  const W = Math.max(300, el.clientWidth), nar = W < 600, lw = nar ? 0 : 200, rowH = nar ? 50 : 32, top = 22;
+  const x0 = nar ? 6 : lw + 12, x1 = W - (nar ? 70 : 100);
+  const X = v => x0 + (Math.log(Math.max(R.min, v)) - Math.log(R.min)) / (Math.log(R.max) - Math.log(R.min)) * (x1 - x0);
+  const H = top + R.rows.length * rowH + 6, svg = s('svg', {viewBox: '0 0 ' + W + ' ' + H, width: W, height: H});
+  const tf = t => R.fmt === 'k' ? usd(t) : '$' + String(t).replace('.', ',');
+  for (const t of R.ticks) svg.append(s('line', {x1: X(t), x2: X(t), y1: top - 6, y2: H - 4, stroke: 'var(--grid)', 'stroke-width': 1}), s('text', {x: X(t), y: 12, 'text-anchor': 'middle', text: tf(t)}));
+  R.rows.forEach((r, i) => {
+    const y = top + i * rowH + (nar ? 33 : rowH / 2), col = r.hot ? 'var(--s2)' : 'var(--s1)';
+    const g = s('g', {tabindex: 0, role: 'img', 'aria-label': r.label + ': ' + r.text});
+    g.append(nar ? s('text', {x: x0, y: y - 14, class: 'lbl', text: r.label}) : s('text', {x: lw, y: y + 4, 'text-anchor': 'end', class: 'lbl', text: r.label}));
+    g.append(s('rect', {x: 0, y: y - 13, width: W, height: 26, fill: 'transparent'}));
+    if (r.hi > r.lo) g.append(s('line', {x1: X(r.lo), x2: X(r.hi), y1: y, y2: y, stroke: col, 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-opacity': .4}));
+    g.append(s('circle', {cx: X(r.lo), cy: y, r: 4.5, fill: col, stroke: 'var(--surface)', 'stroke-width': 2}));
+    if (r.hi > r.lo) g.append(s('circle', {cx: X(r.hi), cy: y, r: 4.5, fill: col, stroke: 'var(--surface)', 'stroke-width': 2}));
+    if (r.m != null) g.append(s('path', {d: 'M' + X(r.m) + ' ' + (y - 7) + ' l5 7 l-5 7 l-5 -7 z', fill: 'var(--ink)', stroke: 'var(--surface)', 'stroke-width': 1.5}));
+    g.append(s('text', {x: X(Math.max(r.hi, r.m || 0)) + 10, y: y + 4, class: 'lbl-strong', text: r.text}));
+    const sh = ev => showTip(ev.clientX, ev.clientY, [h('b', {text: r.label}), tr(R.tipLabel || 'Faixa', r.text), r.m != null ? tr('Mediana medida', tf(r.m)) : null, r.note ? h('div', {style: 'margin-top:5px;opacity:.85', text: r.note}) : null].filter(Boolean));
+    g.addEventListener('pointermove', sh); g.addEventListener('pointerleave', hideTip);
+    g.addEventListener('focus', () => { const b = g.getBoundingClientRect(); sh({clientX: b.left + 40, clientY: b.top}); }); g.addEventListener('blur', hideTip);
+    svg.append(g);
+  });
+  el.replaceChildren(svg);
+}
+const drawRanges = () => $$('[data-ranges]').forEach(el => { const R = D.ranges[el.getAttribute('data-ranges')]; if (R) rangeChart(el, R); });
+
+/* linha */
+function niceStep(v){ if (v <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(v))), n = v / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; }
+function lineChart(el, series, xl){
+  const W = Math.max(280, el.clientWidth), H = 260, m = {l: 50, r: 16, t: 12, b: 28}, n = xl.length;
+  const all = series.flatMap(x => x.values), lo = Math.min(0, ...all), hiR = Math.max(1, ...all), st = niceStep((hiR - lo) / 4);
+  const hi = Math.ceil(hiR / st) * st, lo2 = lo < 0 ? Math.floor(lo / st) * st : 0;
+  const X = i => m.l + i / (n - 1) * (W - m.l - m.r), Y = v => H - m.b - (v - lo2) / (hi - lo2) * (H - m.t - m.b);
+  const svg = s('svg', {viewBox: '0 0 ' + W + ' ' + H, width: W, height: H});
+  for (let t = lo2; t <= hi + st / 2; t += st) svg.append(s('line', {x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t), stroke: Math.abs(t) < 1e-9 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': 1}), s('text', {x: m.l - 8, y: Y(t) + 4, 'text-anchor': 'end', text: usd(t)}));
+  xl.forEach((l, i) => { if (i % (W < 480 ? 3 : 1) === 0 || i === n - 1) svg.append(s('text', {x: X(i), y: H - m.b + 18, 'text-anchor': 'middle', text: l})); });
+  series.forEach((sr, si) => { const d = sr.values.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' ');
+    if (si === 0) svg.append(s('path', {d: d + ' L' + X(n - 1) + ' ' + Y(0) + ' L' + X(0) + ' ' + Y(0) + ' Z', fill: sr.color, 'fill-opacity': .1}));
+    svg.append(s('path', {d, fill: 'none', stroke: sr.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round'}), s('circle', {cx: X(n - 1), cy: Y(sr.values[n - 1]), r: 4.5, fill: sr.color, stroke: 'var(--surface)', 'stroke-width': 2})); });
+  const cr = s('line', {y1: m.t, y2: H - m.b, stroke: 'var(--axis)', visibility: 'hidden'}), dots = series.map(sr => s('circle', {r: 4.5, fill: sr.color, stroke: 'var(--surface)', 'stroke-width': 2, visibility: 'hidden'}));
+  svg.append(cr, ...dots);
+  const hit = s('rect', {x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent', tabindex: 0, 'aria-label': 'Passe o dedo para ler mês a mês'});
+  let idx = n - 1;
+  const at = (i, cx, cy) => { idx = Math.max(0, Math.min(n - 1, i)); cr.setAttribute('x1', X(idx)); cr.setAttribute('x2', X(idx)); cr.setAttribute('visibility', 'visible');
+    dots.forEach((d, k) => { d.setAttribute('cx', X(idx)); d.setAttribute('cy', Y(series[k].values[idx])); d.setAttribute('visibility', 'visible'); });
+    const b = svg.getBoundingClientRect(); showTip(cx != null ? cx : b.left + X(idx) * b.width / W, cy != null ? cy : b.top + 40, [h('b', {text: xl[idx]}), ...series.map(sr => tr(sr.name, usdF(sr.values[idx]), sr.color))]); };
+  const off = () => { cr.setAttribute('visibility', 'hidden'); dots.forEach(d => d.setAttribute('visibility', 'hidden')); hideTip(); };
+  hit.addEventListener('pointermove', e => { const b = svg.getBoundingClientRect(); at(Math.round(((e.clientX - b.left) * W / b.width - m.l) / (W - m.l - m.r) * (n - 1)), e.clientX, e.clientY); });
+  hit.addEventListener('pointerleave', off); hit.addEventListener('blur', off); hit.addEventListener('focus', () => at(idx));
+  hit.addEventListener('keydown', e => { if (e.key === 'ArrowLeft'){ at(idx - 1); e.preventDefault(); } if (e.key === 'ArrowRight'){ at(idx + 1); e.preventDefault(); } });
+  svg.append(hit); el.replaceChildren(svg);
+}
+
+/* simuladores */
+const MONTHS = Array.from({length: 12}, (_, i) => 'mês ' + (i + 1));
+const RUN = {
+  yt(v){ const ads = [], aff = []; let views = v.v0, cum = 0;
+    for (let i = 0; i < 12; i++){ const a = i + 1 >= v.mon ? views / 1000 * v.rpm : 0, f = views * (v.ctr / 100) * (v.conv / 100) * v.comm; ads.push(a); aff.push(f + a); cum += a + f - v.tools; views *= 1 + v.grow / 100; }
+    return {series: [{name: 'Total (anúncio + afiliado)', color: 'var(--s1)', values: aff}, {name: 'Só anúncio do YouTube', color: 'var(--s2)', values: ads}],
+      tiles: [['Renda no mês 12', usdF(aff[11])], ['Views no mês 12', Math.round(views / (1 + v.grow / 100)).toLocaleString('en-US')], ['Acumulado em 12 meses (já tirando ferramentas)', usdF(cum), cum < 0], ['Por hora no mês 12', usdF(aff[11] / Math.max(1, v.hrs * 4.345)) + '/h']]}; },
+  app(v){ const mrr = [], sp = []; let p = 0, cum = 0, be = null;
+    for (let i = 0; i < 12; i++){ p = p * (1 - v.churn / 100) + v.installs * (v.i2t / 100) * (v.t2p / 100); const r = p * v.price * (1 - v.fee / 100), c = v.installs * v.cpi + v.fixed; mrr.push(r); sp.push(c); cum += r - c; if (be == null && cum > 0) be = i + 1; }
+    return {series: [{name: 'Receita líquida da loja', color: 'var(--s1)', values: mrr}, {name: 'Gasto mensal', color: 'var(--s2)', values: sp}],
+      tiles: [['Receita no mês 12', usdF(mrr[11])], ['Pagantes no mês 12', Math.round(p).toLocaleString('en-US')], ['Acumulado em 12 meses', usdF(cum), cum < 0], ['Sai do vermelho', be ? 'mês ' + be : 'não em 12 meses', !be]]}; },
+  svc(v){ const r = [], c = []; let n = 0, cum = 0;
+    for (let i = 0; i < 12; i++){ n = n * (1 - v.churn / 100) + v.newc; const a = n * v.fee + v.newc * v.setup, b = n * v.cost + v.fixed; r.push(a); c.push(b); cum += a - b; }
+    const hrs = n * v.hrs + v.sales;
+    return {series: [{name: 'Receita mensal', color: 'var(--s1)', values: r}, {name: 'Custos mensais', color: 'var(--s2)', values: c}],
+      tiles: [['Lucro no mês 12', usdF(r[11] - c[11]), r[11] - c[11] < 0], ['Clientes no mês 12', (Math.round(n * 10) / 10).toLocaleString('pt-BR')], ['Lucro em 12 meses', usdF(cum), cum < 0], ['Por hora no mês 12', usdF((r[11] - c[11]) / Math.max(1, hrs)) + '/h']]}; }
+};
+const fmtIn = (i, v) => i.unit === '$' ? (i.step < 1 ? '$' + v.toFixed(2) : usdF(v)) : i.unit === '%' ? String(v).replace('.', ',') + '%' : String(v).replace('.', ',') + (i.unit ? ' ' + i.unit : '');
+function mountSim(root){
+  const sim = D.sims.find(x => x.key === root.getAttribute('data-sim')); if (!sim) return;
+  const vals = Object.fromEntries(sim.inputs.map(i => [i.id, i.value]));
+  const form = h('form', {class: 'card ctrls', onsubmit: e => e.preventDefault()}), out = h('div', {class: 'card'});
+  const tiles = h('div', {class: 'tiles', style: 'margin-bottom:12px'}), leg = h('div', {class: 'legend', style: 'margin-bottom:4px'}), ch = h('div', {class: 'viz'}), note = h('p', {class: 'cap', text: sim.note || ''});
+  out.append(tiles, leg, ch, note);
+  const draw = () => { const r = RUN[sim.key](vals); tiles.replaceChildren(...r.tiles.map(([l, v, neg]) => h('div', {class: 'tile'}, h('b', {class: neg ? 'neg' : null, text: v}), h('span', {text: l})))); leg.replaceChildren(...r.series.map(x => h('span', null, h('i', {style: 'background:' + x.color}), x.name))); lineChart(ch, r.series, MONTHS); };
+  const build = () => { form.replaceChildren(...[
+    sim.presets ? h('div', {class: 'field'}, h('span', {class: 'k', text: 'Cenários prontos'}), h('div', {class: 'tabs', style: 'margin:0'}, sim.presets.map(p => h('button', {class: 'tab', type: 'button', onclick: () => { Object.assign(vals, p.values); build(); draw(); }}, p.name)))) : null,
+    ...sim.inputs.map(i => { const o = h('output', {text: fmtIn(i, vals[i.id])}), r = h('input', {type: 'range', id: 'sim-' + sim.key + '-' + i.id, min: i.min, max: i.max, step: i.step, value: vals[i.id]});
+      r.addEventListener('input', () => { vals[i.id] = +r.value; o.textContent = fmtIn(i, vals[i.id]); draw(); });
+      return h('div', {class: 'field'}, h('label', {for: r.id}, i.label, o), r, i.hint ? h('span', {class: 'fine', text: i.hint}) : null); })].filter(Boolean)); };
+  build(); root.replaceChildren(h('div', {class: 'sim'}, form, out)); draw(); root._draw = draw;
+}
+
+/* resto */
+function stackTable(){ const t = D.stack; $('#stack').replaceChildren(h('thead', null, h('tr', null, t.cols.map(c => h('th', {text: c})))), h('tbody', null, t.rows.map(r => h('tr', null, h('td', {text: r[0]}), h('td', {text: r[1]}), h('td', {class: 'num', text: r[2]}), h('td', null, link(host(r[3]) || 'fonte', r[3])))))); }
+function sources(){
+  $('#method').textContent = 'Recorte de uma pesquisa maior: ' + D.meta.nAll + ' caminhos pesquisados por agentes com busca na web, checados de novo por um segundo analista e revisados por um cético que refez a estimativa de renda. Aqui ficaram só os ' + D.meta.nOpps + ' que dependem de IA. A renda "típica" é a do cético quando ele discordou.';
+  $('#src-sum').textContent = 'Todas as fontes (' + D.sources.length + ')';
+  $('#srcs').replaceChildren(...D.sources.map(x => h('li', null, link(x.t || host(x.u), x.u))));
+  const vn = {corrected: 'Corrigido', outdated: 'Desatualizado', refuted: 'Derrubado'};
+  $('#checks-sum').textContent = 'Números que a checagem corrigiu (' + D.checks.list.length + ')';
+  $('#checks').replaceChildren(...D.checks.list.map(c => h('li', null, h('b', {text: vn[c.v] + ': '}), c.c + '. Era "' + c.o + '"' + (c.n ? ', vale "' + c.n + '". ' : '. '), c.u ? link(host(c.u), c.u) : null)));
+}
+function nav(){ const ls = $$('#nav a'); if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) ls.forEach(a => a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + e.target.id))); }), {rootMargin: '-45% 0px -50% 0px'});
+  ls.forEach(a => { const t = document.getElementById(a.getAttribute('href').slice(1)); if (t) io.observe(t); }); }
+
+renderTabs(); renderList(); stackTable(); sources(); nav();
+$$('[data-sim]').forEach(mountSim);
+$('#f-cut').addEventListener('change', e => { view.cut = e.target.checked; renderTabs(); renderList(); });
+$('#f-time').addEventListener('change', e => { view.time = e.target.checked; renderList(); });
+$('#f-nosell').addEventListener('change', e => { view.nosell = e.target.checked; renderList(); });
+const redraw = () => { drawRanges(); $$('[data-sim]').forEach(r => r._draw && r._draw()); };
+requestAnimationFrame(redraw);
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(redraw, 120); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+})();
+</script>
+
+</body>
+</html>
