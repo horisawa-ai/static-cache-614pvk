@@ -1,0 +1,27 @@
+At last light on a castle wall, an armoured knight drives a younger man toward frame right with sword blows that land only on stone, until the younger man's sword rings on the flagstones.
+
+The walkway on top of the wall: pale flagstones, a crenellated parapet along the far side, merlons shoulder-high. At its right end it stops against a tower: one flat wall of rough limestone blocks, wider and taller than any frame, one iron torch at head height. Beyond the parapet the sun sits on the ridgeline behind thin cloud, a veiled amber glare without a clean disc, backlighting everything. Gusts drive sand across the stone.
+
+The knight is the man of reference image 1 for the face and reference image 2 for armour and cloak, used for identity and wardrobe only, never for pose, framing or lighting: about fifty, grey curls, dark worn steel plate, heavy black wool cloak. Here he is seen only from behind or from the waist down.
+
+The younger man is the man of reference image 3 for the face and reference image 4 for clothes and belt, identity and wardrobe only: about thirty, brown curls, stubble, sweat and stone dust, green wool cloak, a leather belt from which a thick forearm-long rolled parchment hangs by a leather cord, tied shut, its outside bare tan hide. Narrow and quick, a plain longsword carried low.
+
+Shot 1, 0:00 to 0:04, medium close-up over the knight's right shoulder, 85 mm, shoulder-mounted, younger man right of centre. The knight's back and grey curls are a soft dark mass in the left third at the lens. Past him the younger man is sharp from the chest up, back to a stone merlon, head above it against the glare: face in shade, a thin amber rim on curls and shoulder, his own sword below the frame line. First frame: the knight's blade already falling from upper left. The younger man wrenches toward frame right and the edge bites the merlon's corner where his shoulder was, chips spitting. One 3 cm camera jolt at impact. The knight rips the blade free and shoulders after him as he backs to the right frame edge.
+
+Hard cut.
+
+Shot 2, 0:04 to 0:07, close detail, side-on at hip height, 100 mm, shoulder rig travelling with his retreat at 1 m/s so the belt stays pinned in the upper right third. The frame runs from belt to knee as he backs toward frame right, three quick steps: on the hip nearest the lens the rolled parchment swings out on its cord and slaps his thigh at each step. His hands ride above the frame line, sword arm on his far side. Deeper in the frame at left, out of focus, the knight's armoured legs come on.
+
+Hard cut.
+
+Shot 3, 0:07 to 0:11, close-up from the collar up, three-quarter, 85 mm, shoulder-mounted at chin height, face in the right third. The tower wall fills the whole background; the fist-sized torch flame burns left of centre, slightly soft. The younger man's head and shoulders slam back against the stone, his far cheek a hand's span from the flame: amber on that cheek, nose and brow, near cheek in shadow. He jerks his head away toward frame right, eyes shut, as the knight's blade blurs in from frame left, bites the stone where his cheek was and scrapes down out of frame: a short burst of fine sparks, each gone in a quarter second. One 3 cm camera jolt at the bite. He opens his eyes toward frame left, breathing hard through his nose.
+
+Hard cut.
+
+Shot 4, 0:11 to 0:15, close shot, worm's-eye, 50 mm, camera locked 8 cm above the flagstones, the tower wall just outside the right frame edge, sword landing in the lower third. Bare backlit stone. The younger man's longsword drops in from the upper right and hits the flagstones an arm's length from the lens: it bounces a finger high, rattles on its cross-guard and lies still, sand skittering past as its ring dies. Soft behind it, seen only below the knee: his boots at frame right, shifting their weight; at frame left the knight's greaves stand planted as his sword tip comes down to rest on the stone.
+
+Camera law: vertical 3:4 full frame, 24 fps, 180 degree shutter, real motion blur. Braced shoulder camera that holds its frame: its only moves are the two half-second jolts and the one travel named above. Shallow depth of field: one plane sharp, everything nearer or farther soft. Anti-default: every blow lands on stone and every frame holds only part of a fighter.
+
+Grade and audio: storm-desat, palette ash, slate, burnt amber. Low-key, exposed 1.5 stops under, two warm sources only: the veiled sun as a backlight rim, the torch lighting only what is within arm's length of it; all else in shade. Only glare, flame and sparks are bright, with faint red-orange halation. Fine 35 mm film grain. No music, no score, no bgm, diegetic ambient only: wind over the parapet, steel cracking into stone, boots grinding sand, steel scraping stone with a spit of sparks, a sword clattering on flagstones.
+
+Constraints: Count of shots: four. Count of people: two, knight left, younger man right. Count of swords: two, one per man. Count of blade contacts with another blade or a body: zero. Count of torches: one. Count of parchments: one, always rolled shut, zero writing visible. Count of spoken words: zero. Count of faces in focus per shot: one at most. Count of looks into the lens: zero. Count of hands in sharp focus: zero. Count of letters or on-screen text: zero. Count of slow drifting camera moves: zero. Count of slow-motion moments: zero, real time throughout. Count of black bars or letterbox bands: zero, the picture fills the whole 3:4 frame.
